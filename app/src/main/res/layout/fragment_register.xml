@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.LoginFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_gravity="center_horizontal"
+
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/titleView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/segoescript"
+            android:gravity="center_horizontal"
+            android:text="REGISTER"
+            android:textAlignment="center"
+            android:textColor="#A9B7FA"
+            android:textSize="45dp"
+            android:textStyle="bold"
+            />
+        <EditText
+            android:id="@+id/editUserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Username"
+            android:fontFamily="@font/calibril"
+            android:inputType="textPersonName"
+            android:layout_marginTop="30dp"
+            android:focusable="true"
+            android:clickable="true"
+            android:focusableInTouchMode="true"/>
+        <EditText
+            android:id="@+id/editPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:fontFamily="@font/calibril"
+            android:hint="Phone"
+            android:inputType="phone"
+            android:focusable="true"
+            android:clickable="true"
+            android:focusableInTouchMode="true"/>
+
+        <EditText
+            android:id="@+id/editEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Email"
+            android:fontFamily="@font/calibril"
+            android:inputType="textEmailAddress"
+            android:layout_marginTop="20dp"
+            android:focusable="true"
+            android:clickable="true"
+            android:focusableInTouchMode="true"/>
+
+        <EditText
+            android:id="@+id/editPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:fontFamily="@font/calibril"
+            android:hint="Password "
+            android:inputType="textPassword"
+            android:layout_marginTop="20dp"
+            android:focusable="true"
+            android:clickable="true"
+            android:focusableInTouchMode="true"/>
+        <EditText
+            android:id="@+id/editPasswordAgain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:fontFamily="@font/calibril"
+            android:hint="Password Again"
+            android:inputType="textPassword"
+            android:layout_marginTop="20dp"
+            android:focusable="true"
+            android:clickable="true"
+            android:focusableInTouchMode="true"/>
+
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/segoescript"
+            android:freezesText="false"
+            android:text="Register"
+            android:textAllCaps="false"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"/>
+    </LinearLayout>
+
+</FrameLayout>

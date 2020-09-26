@@ -1,0 +1,109 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F7E9FA"
+    tools:context="com.example.ey_application.fragment.AnhAnhFragment" >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:background="@drawable/borderlinearlayout"
+        android:paddingTop="15dp"
+        android:paddingBottom="10dp"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="right">
+            <ImageButton
+                android:id="@+id/imageVolumeUS"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/background_volumn"
+                android:src="@drawable/volume_high"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/calibril"
+                android:textSize="20dp"
+                android:text="US"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="5dp"/>
+            <ImageButton
+                android:id="@+id/imageVolumeUK"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/background_volumn"
+                android:src="@drawable/volume_high"
+                android:layout_marginBottom="5dp"
+                android:layout_marginRight="5dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/calibril"
+                android:textSize="20dp"
+                android:text="UK"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="5dp"/>
+        </LinearLayout>
+    </FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="70dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:id="@+id/word"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/calibril"
+                android:textSize="30dp"
+                android:layout_marginRight="40dp"
+                android:textColor="#3A0C8A"
+                android:textStyle="bold">
+
+            </TextView>
+            <TextView
+                android:id="@+id/spell_word"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/calibril"
+                android:textSize="20dp"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/meanVietnamese"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:textColor="#3A0C8A"
+            android:textSize="20dp" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_definition11"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="20dp"/>
+
+
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FBF9FB"
+    tools:context=".activity.Login_Register">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+       >
+      <FrameLayout
+          android:id="@+id/fragment"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          />
+
+        <Button
+            android:id="@+id/button"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="68dp"
+            android:layout_marginRight="68dp"
+            android:fontFamily="@font/segoeprint"
+            android:textAllCaps="false"
+            android:text="Register Now? "
+            android:textColor="#A9B7FA" />
+    </LinearLayout>
+
+
+</FrameLayout>

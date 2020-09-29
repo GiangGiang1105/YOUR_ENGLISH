@@ -63,14 +63,14 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/new_voca"
+                android:id="@+id/dictionary"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
                 android:layout_marginRight="5dp"
                 android:background="#FAEFF7"
                 android:fontFamily="@font/segoescript"
-                android:text="The new vocabularies"
+                android:text="Dictionary English "
                 android:textAllCaps="false"
                 android:textSize="18sp" />
 

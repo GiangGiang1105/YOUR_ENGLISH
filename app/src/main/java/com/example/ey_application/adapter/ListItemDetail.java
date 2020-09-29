@@ -105,6 +105,7 @@ public class ListItemDetail extends RecyclerView.Adapter<ListItemDetail.ViewHold
             itemView.setOnClickListener(this);
         }
 
+
         @Override
         public void onClick(View v) {
             wordItemClick.onClick(v, getAdapterPosition());

@@ -1,25 +1,21 @@
 package com.example.ey_application.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.LinearLayout;
 import android.widget.Switch;
-import android.widget.TextView;
 
 import com.example.ey_application.Model.Word.DataViewPager;
 import com.example.ey_application.Model.Word.DataWord;
@@ -31,8 +27,8 @@ import com.example.ey_application.adapter.ViewPagerItemDetail;
 import com.example.ey_application.adapter.ViewPagerItemReview;
 import com.example.ey_application.session.SessionUser;
 
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class Reviews extends AppCompatActivity implements ViewPagerItemDetail.ChangerPager {
@@ -81,24 +77,6 @@ public class Reviews extends AppCompatActivity implements ViewPagerItemDetail.Ch
         viewPagerItemDetail = new ViewPagerItemDetail(this);
         viewPagerDetail.setAdapter(viewPagerItemDetail);
         viewPagerDetail.setVisibility(View.INVISIBLE);
-        viewPagerDetail.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                if (position == (wordList.size()+1)){
-                    viewPagerDetail.setCurrentItem(0);
-                }
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
         position.observe(this, new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
@@ -119,6 +97,7 @@ public class Reviews extends AppCompatActivity implements ViewPagerItemDetail.Ch
 
 
     }
+
     private void setDialog(){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage("Are you sure, You wanted to make decision");

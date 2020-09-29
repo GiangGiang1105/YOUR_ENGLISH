@@ -1,7 +1,6 @@
 package com.example.ey_application.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,9 +13,9 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import com.example.ey_application.Model.Word.DataViewPager;
 import com.example.ey_application.R;
+import com.example.ey_application.Volumn;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class ViewPagerItemDetail extends PagerAdapter {
@@ -25,8 +24,9 @@ public class ViewPagerItemDetail extends PagerAdapter {
     }
     private List<DataViewPager> dataViewPagerList;
     private Context context;
-    LayoutInflater inflater;
-    ChangerPager changerPager;
+    private LayoutInflater inflater;
+    private ChangerPager changerPager;
+
 
     public ViewPagerItemDetail(Context context) {
         this.dataViewPagerList = new ArrayList<>();

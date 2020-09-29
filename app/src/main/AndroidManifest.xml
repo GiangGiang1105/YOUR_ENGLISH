@@ -4,7 +4,7 @@
     package="com.example.ey_application">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <application
         android:usesCleartextTraffic="true"
         android:allowBackup="true"
@@ -17,7 +17,7 @@
             android:name=".activity.MyAccount"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".activity.NewVoca"
+            android:name=".activity.Dictionary"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".activity.Reviews"

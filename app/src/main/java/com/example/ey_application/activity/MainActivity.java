@@ -2,32 +2,21 @@ package com.example.ey_application.activity;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
-import com.example.ey_application.Model.Users;
 import com.example.ey_application.R;
 import com.example.ey_application.ViewModel.UsersViewModel;
-import com.example.ey_application.session.SessionUser;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private Button addWord;
     private Button btnReview;
-    private Button newVoca;
+    private Button btnDictionary;
     private ImageButton btn_account;
     private  UsersViewModel usersViewModel;
     @Override
@@ -49,10 +38,10 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        newVoca.setOnClickListener(new View.OnClickListener() {
+        btnDictionary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplication(), NewVoca.class);
+                Intent intent = new Intent(getApplication(), Dictionary.class);
                 startActivity(intent);
             }
         });
@@ -68,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     private void getView(){
         addWord = (Button) findViewById(R.id.add_word);
         btnReview = (Button) findViewById(R.id.review);
-        newVoca = (Button) findViewById(R.id.new_voca);
+        btnDictionary = (Button) findViewById(R.id.dictionary);
         btn_account = (ImageButton) findViewById(R.id.fab);
     }
     @Override

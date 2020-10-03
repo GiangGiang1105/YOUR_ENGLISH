@@ -1,4 +1,5 @@
 package com.example.ey_application.database;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -6,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import com.example.ey_application.Model.Word.WordDictionary;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -29,75 +32,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         this.dbPath = context.getApplicationInfo().dataDir+"/databases/";
         Log.i("path", dbPath);
     }
-/*
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
-    }
-    public void CheckDb(){
-        Log.i("CheckDb", "CheckDb");
-        SQLiteDatabase checkDb =  null;
-        String filePath = dbPath + dbName;
-        try {
-
-            checkDb = SQLiteDatabase.openDatabase(filePath, null, SQLiteDatabase.OPEN_READWRITE);
-
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        if (checkDb != null){
-            Log.i("Database already exists", "Database already exists");
-        }
-        else{
-            CopyDatabase();
-            checkDb.close();
-        }
-    }
-    public void CopyDatabase(){
-        try {
-            InputStream ios = context.getAssets().open("databases/"+dbName);
-            Log.i("pathName", dbPath + dbName);
-            OutputStream os = new FileOutputStream(dbPath + dbName);
-            byte[] buffer = new byte[1024];
-            int len;
-            while((len = ios.read(buffer)) > 0){
-                os.write(buffer, 0, len);
-                Log.d("copyDb", " Database copied");
-            }
-            os.flush();
-            ios.close();
-            os.close();
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-
-    }
-    public void OpenDatabase(){
-        Log.d("OpenDatabase", " OpenDatabase");
-        String filePath = dbPath + dbName;
-        database = SQLiteDatabase.openDatabase(filePath, null, SQLiteDatabase.OPEN_READWRITE);
-
-    }*/
-    public List<String> getQuotes() {
-        List<String> list = new ArrayList<>();
+    public List<WordDictionary> getQuotes() {
+        List<WordDictionary> list = new ArrayList<>();
+        openDatabase();
         Cursor cursor = database.rawQuery("SELECT * FROM words", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            list.add(cursor.getString(1));
+            list.add(new WordDictionary(cursor.getString(0), cursor.getInt(1), cursor.getInt(2)));
             cursor.moveToNext();
         }
         cursor.close();
-        database.close();
         return list;
     }
-    public void createDatabase() throws IOException
+    public boolean markWord(int id, int mark){
+        ContentValues values = new ContentValues();
+        values.put("mark", mark);
+        openDatabase();
+        int result = database.update("words", values, "id_ = ?", new String[]{String.valueOf(id)});
+        if (result == 0){
+            return false;
+
+        }
+        else{
+            return true;
+        }
+    }
+    public void createDatabase()
     {
 
         boolean dbExist = checkDataBase();
@@ -105,10 +65,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if(dbExist)
         {
             Log.v("DB Exists", "db exists");
-            // By calling this method here onUpgrade will be called on a
-            // writeable database, but only if the version number has been
-            // bumped
-            //onUpgrade(myDataBase, DATABASE_VERSION_old, DATABASE_VERSION);
         }
 
         boolean dbExist1 = checkDataBase();

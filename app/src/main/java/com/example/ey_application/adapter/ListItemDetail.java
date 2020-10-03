@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ey_application.R;
 import com.example.ey_application.Volumn;
+import com.example.ey_application.myinterface.WordItemClick;
 import com.mannan.translateapi.Language;
 import com.mannan.translateapi.TranslateAPI;
 
@@ -49,6 +50,11 @@ public class ListItemDetail extends RecyclerView.Adapter<ListItemDetail.ViewHold
             @Override
             public void onClick(View v, int position) {
                 showTranslate(list.get(position));
+            }
+
+            @Override
+            public void onClickItem(View v, String word) {
+
             }
         });
     }

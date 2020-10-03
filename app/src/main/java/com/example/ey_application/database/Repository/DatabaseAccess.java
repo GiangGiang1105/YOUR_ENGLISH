@@ -1,51 +1,41 @@
 package com.example.ey_application.database.Repository;
 
+import android.app.Application;
 import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.MutableLiveData;
 
+import com.example.ey_application.Model.Word.WordDictionary;
 import com.example.ey_application.database.DatabaseHelper;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DatabaseAccess {
+public class DatabaseAccess extends AndroidViewModel {
     private DatabaseHelper openHelper;
-    private static DatabaseAccess instance;
-
-
-    private DatabaseAccess(Context context) {
-        this.openHelper = new DatabaseHelper(context, "eng_dictionary.db", 1);
-       try {
-           openHelper.createDatabase();
-       }
-       catch (Exception e){
-           e.printStackTrace();
-       }
-       try{
-           openHelper.openDatabase();
-
-       }
-       catch (Exception e){
-           e.printStackTrace();
-       }
-    }
-
-
-    public static DatabaseAccess getInstance(Context context) {
-        if (instance == null) {
-            instance = new DatabaseAccess(context);
+    public MutableLiveData<List<WordDictionary>> listDictionary = new MutableLiveData<>();
+    List<WordDictionary> list = new ArrayList<>();
+    public DatabaseAccess(Application application) {
+        super(application);
+        this.openHelper = new DatabaseHelper(application, "eng_dictionary.db", 1);
+        try {
+            openHelper.createDatabase();
+            openHelper.openDatabase();
         }
-        return instance;
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
-
-    public List<String> getQuotes() {
-        List<String> list = openHelper.getQuotes();
+    public void getQuotes() {
+        list = openHelper.getQuotes();
+        listDictionary.postValue(list);
         openHelper.closeDataBase();
-        return list;
+    }
+    public boolean markWord(int id, int mark){
+        boolean bool = openHelper.markWord(id, mark);
+        getQuotes();
+        return bool;
     }
 }

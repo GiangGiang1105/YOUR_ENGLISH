@@ -1,5 +1,6 @@
 package com.example.ey_application.activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
@@ -11,6 +12,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,13 +27,16 @@ import com.example.ey_application.ViewModel.WordDetailViewModel;
 import com.example.ey_application.ViewModel.WordViewModel;
 import com.example.ey_application.adapter.ViewPagerItemDetail;
 import com.example.ey_application.adapter.ViewPagerItemReview;
+import com.example.ey_application.myinterface.ResultRecognize;
 import com.example.ey_application.session.SessionUser;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Reviews extends AppCompatActivity implements ViewPagerItemDetail.ChangerPager {
+public class Reviews extends AppCompatActivity implements ViewPagerItemDetail.ChangerPager, ViewPagerItemReview.CallRecognize {
+
+    private static final int RECOGNIZE_RESULT = 1;
     private ViewPager viewPager;
     private ViewPager viewPagerDetail;
     private Button mSearch;
@@ -46,6 +51,7 @@ public class Reviews extends AppCompatActivity implements ViewPagerItemDetail.Ch
     ViewPagerItemDetail viewPagerItemDetail;
     private int mCureentPage = 0;
     private MutableLiveData<Integer> position = new MutableLiveData<>();
+    private ResultRecognize resultRecognize;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +78,7 @@ public class Reviews extends AppCompatActivity implements ViewPagerItemDetail.Ch
         });
 
         viewPagerItemReview = new ViewPagerItemReview( this);
+        resultRecognize = (ResultRecognize) viewPagerItemReview;
         viewPager.setAdapter(viewPagerItemReview);
         viewPager.beginFakeDrag();
         viewPagerItemDetail = new ViewPagerItemDetail(this);
@@ -164,10 +171,36 @@ public class Reviews extends AppCompatActivity implements ViewPagerItemDetail.Ch
     public void onResultChangerPager(boolean bool) {
        if (bool){
            mSwitch.setChecked(false);
+           Log.i(" mCureentPageBefore", String.valueOf(mCureentPage));
            mCureentPage = mCureentPage + 1;
+           Log.i(" mCureentPageAfter", String.valueOf(mCureentPage));
+           if (mCureentPage == wordList.size() ){
+               Intent intent = new Intent(this, Score.class);
+               startActivity(intent);
+               return;
+           }
            position.postValue(mCureentPage);
            viewPager.setCurrentItem(mCureentPage);
            viewPagerDetail.setVisibility(View.INVISIBLE);
        }
+    }
+
+    @Override
+    public void callRecognize(boolean bool) {
+        if (bool){
+            Intent speachIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+            speachIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+            speachIntent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speach to text");
+            startActivityForResult(speachIntent, RECOGNIZE_RESULT);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == RECOGNIZE_RESULT && resultCode == RESULT_OK){
+            ArrayList<String> recognizeWord = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+            resultRecognize.resultRecognize(recognizeWord.get(0).toString());
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

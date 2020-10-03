@@ -1,17 +1,12 @@
 package com.example.ey_application.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,9 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ey_application.Model.Word.Word;
 import com.example.ey_application.R;
-import com.example.ey_application.activity.WordDetail;
+import com.example.ey_application.myinterface.WordItemClick;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 

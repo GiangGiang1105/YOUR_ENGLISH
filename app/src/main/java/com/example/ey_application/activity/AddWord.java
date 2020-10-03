@@ -3,24 +3,16 @@ package com.example.ey_application.activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.SearchView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.MenuItemCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,14 +22,12 @@ import com.example.ey_application.Model.Word.Word;
 import com.example.ey_application.R;
 import com.example.ey_application.ViewModel.WordViewModel;
 import com.example.ey_application.adapter.ListAdapterWord;
-import com.example.ey_application.adapter.WordItemClick;
+import com.example.ey_application.myinterface.WordItemClick;
 import com.example.ey_application.session.SessionUser;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
-import static androidx.test.InstrumentationRegistry.getContext;
 
 public class AddWord extends AppCompatActivity  implements ListAdapterWord.CallBackData, WordViewModel.ResultCallBackWord {
     public static final String TAG = AddWord.class.getSimpleName();
@@ -97,6 +87,11 @@ public class AddWord extends AppCompatActivity  implements ListAdapterWord.CallB
             @Override
             public void onClick(View v, int position) {
                 intentWordDetail(listWord.get(position));
+            }
+
+            @Override
+            public void onClickItem(View v, String word) {
+
             }
         });
     }

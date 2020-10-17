@@ -3,25 +3,24 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#D2DAFF"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp">
+    android:background="@drawable/bg_btn_add"
+    android:layout_marginTop="@dimen/_5sdp"
+    android:layout_marginBottom="@dimen/_5sdp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:weightSum="7"
-        android:background="@drawable/bg_btn_add"
         tools:ignore="MissingConstraints"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp">
+        android:paddingBottom="@dimen/_10sdp"
+        android:paddingTop="@dimen/_10sdp">
         <CheckBox
             android:id="@+id/mark"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_marginLeft="10dp"/>
+            android:layout_marginLeft="@dimen/_10sdp"/>
         <TextView
             android:id="@+id/text_word"
             android:layout_weight="5"
@@ -30,15 +29,8 @@
             android:fontFamily="@font/calibril"
             android:text="TextView"
             android:textColor="#3A0C8A"
-            android:textSize="22sp" />
+            android:textSize="@dimen/_18sdp" />
 
-        <ImageButton
-            android:id="@+id/remove"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#FDE9F8"
-            android:src="@drawable/trash_can_outline" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

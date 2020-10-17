@@ -4,26 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F7E9FA"
+    android:background="@color/background_addWord"
     tools:context=".activity.WordDetail">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="#D2DAFF"
+        android:layout_height="@dimen/_70sdp"
+        android:background="@color/colorPrimaryDark"
+        app:tabTextColor="#fff"
         tools:ignore="MissingConstraints">
 
-       <!-- <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Anh Viet"
-            />-->
+
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Anh Anh "
+            android:text="Eng Eng "
             />
 
         <com.google.android.material.tabs.TabItem

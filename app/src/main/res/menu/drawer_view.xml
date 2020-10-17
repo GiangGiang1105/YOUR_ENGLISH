@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_add_word"
+        android:icon="@drawable/plus_box_multiple"
+        android:title="@string/menu_new_word" />
+    <item
+        android:id="@+id/nav_review"
+        android:icon="@drawable/message_draw"
+        android:title="@string/menu_review" />
+    <item
+        android:id="@+id/nav_dictionary"
+        android:icon="@drawable/view_list_outline"
+        android:title="@string/menu_dictionary" />
+    <item
+        android:id="@+id/nav_word"
+        android:icon="@drawable/view_list_outline"
+        android:title="@string/menu_word_looked_up" />
+    <item
+        android:id="@+id/nav_account_setting"
+        android:icon="@drawable/account_cog_outline"
+        android:title="@string/menu_account_setting" />
+    <item
+        android:id="@+id/nav_general_settings"
+        android:icon="@drawable/cog_outline"
+        android:title="@string/menu_general_settings" />
+    <item
+        android:id="@+id/nav_logout"
+        android:icon="@drawable/logout"
+        android:title="@string/menu_logout" />
+</menu>

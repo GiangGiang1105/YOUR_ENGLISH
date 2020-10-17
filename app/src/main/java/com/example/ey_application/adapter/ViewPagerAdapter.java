@@ -8,7 +8,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.ey_application.fragment.AnhAnhFragment;
-import com.example.ey_application.fragment.AnhVietFragment;
 import com.example.ey_application.fragment.ExampleFragment;
 import com.example.ey_application.fragment.SynonymsFragment;
 

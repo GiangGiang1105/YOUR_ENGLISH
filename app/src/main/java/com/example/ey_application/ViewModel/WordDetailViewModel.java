@@ -35,6 +35,5 @@ public class WordDetailViewModel extends ViewModel implements WordDetailReponsit
     @Override
     public void onResult(DataWord dataWord) {
          dataWordMutableLiveData.postValue(dataWord);
-         Log.i("datawwordmutita", String.valueOf(dataWordMutableLiveData.getValue() != null ?dataWordMutableLiveData.getValue().getDefinition(): null));
     }
 }

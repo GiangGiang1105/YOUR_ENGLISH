@@ -1,9 +1,11 @@
 package com.example.ey_application.activity;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.widget.TextView;
@@ -31,6 +33,7 @@ public class Splash extends AppCompatActivity {
     }
     private void countTime(){
             countDownTimer = new CountDownTimer(3250, 250) {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onTick(long l) {
                 counter++;
@@ -49,21 +52,22 @@ public class Splash extends AppCompatActivity {
         };
         countDownTimer.start();
     }
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private void Annotation(int counter){
         if (counter == 2 || counter == 6 || counter == 10){
-            image3.setBackgroundColor(0xFFF7E9FA);
-            image1.setBackgroundColor(0xFFE6EBFF);
+            image3.setBackgroundColor(getColor(R.color.colorAccentBackgroud));
+            image1.setBackgroundColor(getColor(R.color.colorPrimary));
         }
         else if (counter == 3 || counter == 7 || counter == 11){
-            image1.setBackgroundColor(0xFFD2DAFF);
+            image1.setBackgroundColor(getColor(R.color.colorPrimaryBackgroud));
             image2.setText("");
         } else if (counter == 4 || counter == 8 || counter == 12){
             image2.setText("ey");
-            image4.setBackgroundColor(0xFFFDF7FC);
+            image4.setBackgroundColor(getColor(R.color.black_overlay));
         }
         else{
-            image4.setBackgroundColor(0xFFFDE9F8);
-            image3.setBackgroundColor(0xFFFAF5FB);
+            image4.setBackgroundColor(getColor(R.color.black_overlayBackgroud));
+            image3.setBackgroundColor(getColor(R.color.colorAccent));
         }
     }
     private void IntentLogin(){

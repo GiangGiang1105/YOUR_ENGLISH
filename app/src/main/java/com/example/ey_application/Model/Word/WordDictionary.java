@@ -27,11 +27,11 @@ public class WordDictionary {
         this.word = word;
     }
 
-    public int getMark() {
-        return mark;
+    public boolean getMark() {
+        return mark == 1? true : false;
     }
 
-    public void setMark(int mark) {
-        this.mark = mark;
+    public void setMark(boolean mark) {
+        this.mark = mark ? 1 : 0;
     }
 }

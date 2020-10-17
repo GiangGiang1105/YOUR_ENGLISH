@@ -1,46 +1,59 @@
 package com.example.ey_application.activity;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
-import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ProgressBar;
 import android.widget.Switch;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.ey_application.Model.Reviews.Score;
 import com.example.ey_application.Model.Word.DataViewPager;
 import com.example.ey_application.Model.Word.DataWord;
 import com.example.ey_application.Model.Word.Word;
 import com.example.ey_application.R;
+import com.example.ey_application.ViewModel.TranslateViewModel;
 import com.example.ey_application.ViewModel.WordDetailViewModel;
 import com.example.ey_application.ViewModel.WordViewModel;
 import com.example.ey_application.adapter.ViewPagerItemDetail;
+import com.example.ey_application.adapter.ViewPagerItemMeanReview;
 import com.example.ey_application.adapter.ViewPagerItemReview;
 import com.example.ey_application.myinterface.ResultRecognize;
+import com.example.ey_application.myinterface.ResultTranslate;
 import com.example.ey_application.session.SessionUser;
 
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-public class Reviews extends AppCompatActivity implements ViewPagerItemDetail.ChangerPager, ViewPagerItemReview.CallRecognize {
+public class Test extends AppCompatActivity implements ViewPagerItemDetail.ChangerPager, ViewPagerItemReview.CallRecognize, ViewPagerItemMeanReview.TranslateText {
 
     private static final int RECOGNIZE_RESULT = 1;
     private ViewPager viewPager;
     private ViewPager viewPagerDetail;
     private Button mSearch;
+    private ProgressBar progressTest;
     private Switch mSwitch;
+    private TextView scoreView;
     private List<Word> wordList;
     private List<DataViewPager> dataViewPagerList =  new ArrayList<>();
     WordViewModel wordViewModel;
@@ -49,18 +62,32 @@ public class Reviews extends AppCompatActivity implements ViewPagerItemDetail.Ch
     ViewPagerItemReview viewPagerItemReview;
     WordDetailViewModel wordDetailViewModel;
     ViewPagerItemDetail viewPagerItemDetail;
+    ViewPagerItemMeanReview viewPagerItemMeanReview;
     private int mCureentPage = 0;
     private MutableLiveData<Integer> position = new MutableLiveData<>();
     private ResultRecognize resultRecognize;
+    private Intent intent;
+    private int typeTest;
+    private TranslateViewModel translateViewModel;
+    private ResultTranslate resultTranslate;
+    private int scoreTest = 0;
+    private Score score;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reviews);
         getView();
+
+        intent = getIntent();
+        typeTest = intent.getIntExtra("testtype", 2);
+        score = new Score(id_user, typeTest,  0, 0);
+
         wordList = new ArrayList<>();
         wordViewModel = ViewModelProviders.of(this).get(WordViewModel.class);
         wordDetailViewModel = ViewModelProviders.of(this).get(WordDetailViewModel.class);
         wordDetailViewModel.init();
+        translateViewModel = ViewModelProviders.of(Test.this).get(TranslateViewModel.class);
+        translateViewModel.init();
         sessionUser = new SessionUser(getApplicationContext());
         sessionUser.getPreferences();
         id_user = sessionUser.getLoggedID();
@@ -70,17 +97,30 @@ public class Reviews extends AppCompatActivity implements ViewPagerItemDetail.Ch
             public void onChanged(List<Word> words) {
                 wordList = words;
                 viewPagerItemReview.setData(wordList);
+                viewPagerItemMeanReview.setData(wordList);
                 position.postValue(mCureentPage);
                 if (wordList.size() == 0){
                     setDialog();
                 }
             }
         });
-
+        viewPagerItemMeanReview = new ViewPagerItemMeanReview(this);
         viewPagerItemReview = new ViewPagerItemReview( this);
-        resultRecognize = (ResultRecognize) viewPagerItemReview;
-        viewPager.setAdapter(viewPagerItemReview);
+        if (typeTest == 0){
+            resultTranslate = (ResultTranslate) viewPagerItemMeanReview;
+            viewPager.setAdapter(viewPagerItemMeanReview);
+        }
+        else if (typeTest == 1){
+            resultRecognize = (ResultRecognize) viewPagerItemReview;
+            viewPager.setAdapter(viewPagerItemReview);
+        }
+        else{
+            Toast.makeText(Test.this, "Error", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(Test.this, MainActivity.class);
+            startActivity(intent);
+        }
         viewPager.beginFakeDrag();
+
         viewPagerItemDetail = new ViewPagerItemDetail(this);
         viewPagerDetail.setAdapter(viewPagerItemDetail);
         viewPagerDetail.setVisibility(View.INVISIBLE);
@@ -101,9 +141,24 @@ public class Reviews extends AppCompatActivity implements ViewPagerItemDetail.Ch
                 }
             }
         });
-
+        if (typeTest == 0){
+            wordViewModel.showScore(id_user, typeTest);
+        }
+        else if (typeTest == 1){
+            wordViewModel.showScore(id_user, typeTest);
+        }
+        wordViewModel.listScore.observe(this, new Observer<List<Score>>() {
+            @Override
+            public void onChanged(List<Score> scores) {
+                if (scores.size() != 0){
+                    score = scores.get(0);
+                    scoreTest += scores.get(0).getTruth() * 100;
+                }
+            }
+        });
 
     }
+
 
     private void setDialog(){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -137,7 +192,6 @@ public class Reviews extends AppCompatActivity implements ViewPagerItemDetail.Ch
     private void setDataViewPagerItem(Integer integer){
         if (wordList.size() != 0){
             if (wordList.get(integer).getWord() != null ){
-                Log.i("word", wordList.get(integer).getWord());
                 wordDetailViewModel.getWord(wordList.get(integer).getWord()).observe(this, new Observer<DataWord>() {
                     @Override
                     public void onChanged(DataWord dataWord) {
@@ -165,15 +219,15 @@ public class Reviews extends AppCompatActivity implements ViewPagerItemDetail.Ch
         mSearch = findViewById(R.id.search);
         mSwitch = findViewById(R.id.switch_view);
         viewPagerDetail = findViewById(R.id.viewdetail);
+        scoreView = findViewById(R.id.score);
+        scoreView.setText(String.valueOf(scoreTest));
     }
 
     @Override
     public void onResultChangerPager(boolean bool) {
        if (bool){
            mSwitch.setChecked(false);
-           Log.i(" mCureentPageBefore", String.valueOf(mCureentPage));
            mCureentPage = mCureentPage + 1;
-           Log.i(" mCureentPageAfter", String.valueOf(mCureentPage));
            if (mCureentPage == wordList.size() ){
                Intent intent = new Intent(this, Score.class);
                startActivity(intent);
@@ -182,6 +236,21 @@ public class Reviews extends AppCompatActivity implements ViewPagerItemDetail.Ch
            position.postValue(mCureentPage);
            viewPager.setCurrentItem(mCureentPage);
            viewPagerDetail.setVisibility(View.INVISIBLE);
+           if (typeTest == 0){
+               if (viewPagerItemMeanReview.boolTest){
+                   score.setTruth(score.getTruth() +1);
+               }
+               else{
+                   score.setFail(score.getFail() +1);
+               }
+               wordViewModel.updateScore( score.getIdUser(),score.getKingOfReview(), score.getTruth(), score.getFail());
+           }
+           else if (typeTest == 1){
+               //Score score = new Score(id_user, codeTest, typeTest,  viewPagerItemReview.countTruth, viewPagerItemReview.countFail);
+              // wordViewModel.updateScore(score);
+           }
+
+
        }
     }
 
@@ -202,5 +271,17 @@ public class Reviews extends AppCompatActivity implements ViewPagerItemDetail.Ch
             resultRecognize.resultRecognize(recognizeWord.get(0).toString());
         }
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void sendToTranslateActivity(String text) {
+        if (text!= null){
+            translateViewModel.translate(text).observe(this, new Observer<String>() {
+                @Override
+                public void onChanged(String s) {
+                   resultTranslate.resultTranslate(s);
+                }
+            });
+        }
     }
 }

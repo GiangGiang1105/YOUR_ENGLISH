@@ -3,9 +3,10 @@
     android:shape="oval">
 
     <gradient
-        android:angle="135"
-        android:endColor="#F8BCFA"
-        android:startColor="#F8BCFA"
+        android:angle="45"
+        android:startColor="@color/black_overlayBackgroud"
+        android:endColor="@color/colorPrimaryBackgroud"
+        android:centerColor="@color/colorAccentBackgroud"
         android:type="linear" />
 
     <size

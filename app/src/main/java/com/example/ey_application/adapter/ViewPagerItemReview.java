@@ -41,6 +41,9 @@ public class ViewPagerItemReview extends PagerAdapter implements ResultRecognize
     TextToSpeech textToSpeech;
     private CallRecognize callRecognize;
     private MutableLiveData<String> liveDataWordRegconize;
+    public int countTruth = 0;
+    public int countFail = 0;
+    public boolean boolTest;
     public ViewPagerItemReview(Context context) {
         this.wordList = new ArrayList<>();
         this.context = context;
@@ -60,6 +63,7 @@ public class ViewPagerItemReview extends PagerAdapter implements ResultRecognize
 
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
+        liveDataWordRegconize.postValue("");
         return view == (ConstraintLayout) object;
     }
 
@@ -69,23 +73,20 @@ public class ViewPagerItemReview extends PagerAdapter implements ResultRecognize
         inflater = (LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.viewpager_review_item,container,false);
         TextView txtWord = (TextView) view.findViewById(R.id.word);
-        EditText editMean = (EditText) view.findViewById(R.id.edit_text_word);
-        Button btnTest = (Button) view.findViewById(R.id.btn_test);
         ImageButton btnVolumn = (ImageButton) view.findViewById(R.id.volumn_word);
         ImageButton btnRecognize = (ImageButton) view.findViewById(R.id.microphone_word);
         final TextView txtRecognize = (TextView) view.findViewById(R.id.textRegconize);
         txtWord.setText(wordList.get(position).getWord());
-        liveDataWordRegconize.postValue("");
-        Log.i("position", String.valueOf(position));
         liveDataWordRegconize.observe((LifecycleOwner) context , new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                Log.i("sistem", s);
                 if (s.trim().equals(wordList.get(position).getWord())){
                     txtRecognize.setTextColor(0xFF0BF415);
+                    countTruth += 1;
                 }
                 else{
                     txtRecognize.setTextColor(0xFFFF1D0D);
+                    countFail += 1;
                 }
                 txtRecognize.setText(s);
             }

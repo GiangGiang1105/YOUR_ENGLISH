@@ -1,0 +1,76 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.example.ey_application.fragment.HomeFragment">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_120sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/add_word"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="@dimen/_135sdp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:background="@drawable/background_main"
+                android:fontFamily="@font/calibril"
+                android:text="Your new word"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="@dimen/_18sdp" />
+
+            <Button
+                android:id="@+id/review"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="@dimen/_135sdp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:background="@drawable/background_main1"
+                android:fontFamily="@font/calibril"
+                android:text="Review"
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="@dimen/_18sdp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_120sdp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/dictionary"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="@dimen/_135sdp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/_5sdp"
+                android:background="@drawable/background_main2"
+                android:fontFamily="@font/calibril"
+                android:text="Dictionary English "
+                android:textAllCaps="false"
+                android:textColor="#fff"
+                android:textSize="@dimen/_18sdp" />
+
+            <Button
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="@dimen/_135sdp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:background="@drawable/background_main3"
+                android:fontFamily="@font/calibril"
+                android:textAllCaps="false"
+                android:textColor="#fff" />
+
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

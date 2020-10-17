@@ -8,7 +8,10 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import androidx.lifecycle.MutableLiveData;
+
 import com.example.ey_application.Model.Word.WordDictionary;
+import com.example.ey_application.myinterface.Result;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -25,36 +28,44 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     String dbName;
     String dbPath;
     SQLiteDatabase database;
+    Result result;
     public DatabaseHelper( Context context,  String name, int version) {
         super(context, name, null, version);
         this.dbName = name;
         this.context = context;
         this.dbPath = context.getApplicationInfo().dataDir+"/databases/";
-        Log.i("path", dbPath);
     }
-    public List<WordDictionary> getQuotes() {
+
+    public MutableLiveData<List<WordDictionary>> getQuotes() {
+        MutableLiveData<List<WordDictionary>> listMutableLiveData = new MutableLiveData<>();
         List<WordDictionary> list = new ArrayList<>();
         openDatabase();
         Cursor cursor = database.rawQuery("SELECT * FROM words", null);
         cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            list.add(new WordDictionary(cursor.getString(0), cursor.getInt(1), cursor.getInt(2)));
-            cursor.moveToNext();
+        if (cursor != null){
+            while (!cursor.isAfterLast()) {
+                list.add(new WordDictionary(cursor.getString(0), cursor.getInt(1), cursor.getInt(2)));
+                cursor.moveToNext();
+            }
+
         }
         cursor.close();
-        return list;
+        listMutableLiveData.postValue(list);
+        return listMutableLiveData;
     }
-    public boolean markWord(int id, int mark){
+    public void markWord(int id, int mark){
         ContentValues values = new ContentValues();
         values.put("mark", mark);
         openDatabase();
-        int result = database.update("words", values, "id_ = ?", new String[]{String.valueOf(id)});
-        if (result == 0){
-            return false;
+        int rs = database.update("words", values, "id_ = ?", new String[]{String.valueOf(id)});
 
+        if (rs == 0){
+            database.close();
+            Log.i("update", "unsuccesss");
         }
         else{
-            return true;
+            database.close();
+            Log.i("update", "successs" + mark);
         }
     }
     public void createDatabase()

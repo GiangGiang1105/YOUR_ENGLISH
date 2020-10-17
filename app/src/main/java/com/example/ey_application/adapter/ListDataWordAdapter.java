@@ -10,19 +10,18 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Filter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ey_application.Model.Word.WordDictionary;
 import com.example.ey_application.R;
-import com.example.ey_application.activity.Dictionary;
 import com.example.ey_application.database.Repository.DatabaseAccess;
-import com.example.ey_application.myinterface.Result;
+import com.example.ey_application.myinterface.CallBackDictionary;
 import com.example.ey_application.myinterface.WordItemClick;
 
 import java.util.ArrayList;
@@ -33,12 +32,10 @@ public class ListDataWordAdapter extends  RecyclerView.Adapter<ListDataWordAdapt
     private List<WordDictionary> dataFilter;
     public Context context;
     private WordItemClick wordItemClick;
-    private DatabaseAccess databaseAccess;
-    private Result result;
+    List<Integer> listPossitionChecked = new ArrayList<>();
     public ListDataWordAdapter(Context context) {
         data = new ArrayList<>();
         this.context = context;
-        databaseAccess = new DatabaseAccess((Application) context);
     }
     public void setData( List<WordDictionary> data){
         this.data.clear();
@@ -57,24 +54,10 @@ public class ListDataWordAdapter extends  RecyclerView.Adapter<ListDataWordAdapt
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerViewHolder holder, final int position) {
-        String word = data.get(position).getWord().toLowerCase();
+    public void onBindViewHolder(@NonNull final RecyclerViewHolder holder, final int position) {
+        final WordDictionary wordDictionary = data.get(position);
+        final String word = data.get(position).getWord().toLowerCase();
         holder.textWord.setText(word);
-        if (data.get(position).getMark() == 1){
-            holder.checkBox.setChecked(true);
-        }
-        holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
-                    databaseAccess.markWord(data.get(position).getId(), 1);
-                }
-                else{
-                    databaseAccess.markWord(data.get(position).getId(), 0);
-                }
-            }
-        });
-
     }
 
     @Override
@@ -84,15 +67,13 @@ public class ListDataWordAdapter extends  RecyclerView.Adapter<ListDataWordAdapt
 
     class  RecyclerViewHolder extends RecyclerView.ViewHolder {
         TextView textWord;
-        ImageButton imageButton;
         CheckBox checkBox;
-
         public RecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
             textWord = (TextView) itemView.findViewById(R.id.text_word);
-            imageButton = (ImageButton) itemView.findViewById(R.id.remove);
             checkBox = (CheckBox) itemView.findViewById(R.id.mark);
-            imageButton.setVisibility(View.INVISIBLE);
+            checkBox.setVisibility(View.INVISIBLE);
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -102,8 +83,7 @@ public class ListDataWordAdapter extends  RecyclerView.Adapter<ListDataWordAdapt
                     }
                 }
             });
-
-
+            this.setIsRecyclable(false);
         }
     }
     public Filter getFilter(final List<WordDictionary> words){

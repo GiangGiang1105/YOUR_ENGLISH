@@ -1,24 +1,26 @@
 package com.example.ey_application.database.Repository;
 
 import android.app.Application;
-import android.content.Context;
+import android.util.Log;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.ey_application.Model.Word.WordDictionary;
 import com.example.ey_application.database.DatabaseHelper;
+import com.example.ey_application.myinterface.Result;
+
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DatabaseAccess extends AndroidViewModel {
+public class DatabaseAccess extends AndroidViewModel{
     private DatabaseHelper openHelper;
     public MutableLiveData<List<WordDictionary>> listDictionary = new MutableLiveData<>();
-    List<WordDictionary> list = new ArrayList<>();
     public DatabaseAccess(Application application) {
         super(application);
         this.openHelper = new DatabaseHelper(application, "eng_dictionary.db", 1);
+
         try {
             openHelper.createDatabase();
             openHelper.openDatabase();
@@ -29,13 +31,13 @@ public class DatabaseAccess extends AndroidViewModel {
     }
 
     public void getQuotes() {
-        list = openHelper.getQuotes();
-        listDictionary.postValue(list);
+        listDictionary = openHelper.getQuotes();
         openHelper.closeDataBase();
     }
-    public boolean markWord(int id, int mark){
-        boolean bool = openHelper.markWord(id, mark);
-        getQuotes();
-        return bool;
+    public void markWord(int id, int mark){
+        openHelper.markWord(id, mark);
     }
+
+
+
 }

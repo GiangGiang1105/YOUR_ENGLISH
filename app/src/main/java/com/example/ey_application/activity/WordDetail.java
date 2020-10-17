@@ -35,14 +35,6 @@ public class WordDetail extends AppCompatActivity {
         void sendSynonyms(List<Detail> synonyms);
         void sendExample(List<Detail> example);
     }
-    public interface SynonymsInterface{
-        void sendSynonyms(List<Detail> synonyms , Phonetics phonetics);
-        void sendDataWord(String word, String meanVietnamese);
-    }
-    public interface ExampleInterface{
-        void sendExample(List<Detail> example , Phonetics phonetics);
-        void sendDataWord(String word, String meanVietnamese);
-    }
     private Word word;
     private TabLayout tabLayout;
     private ViewPager viewPager;

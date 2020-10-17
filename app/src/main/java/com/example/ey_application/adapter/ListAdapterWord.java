@@ -1,12 +1,17 @@
 package com.example.ey_application.adapter;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -25,20 +30,36 @@ public class ListAdapterWord extends RecyclerView.Adapter<ListAdapterWord.ViewHo
     private List<Word> listData;
     private Context context;
     WordItemClick wordItemClick;
-    private CallBackData callBackData;
+    public List<Integer> listPosition = new ArrayList<>();
+    public List<Integer> listPositionDelete = new ArrayList<>();
     public ListAdapterWord(Context context) {
         this.listData = new ArrayList<>();
         this.context = context;
     }
-    public void Callback(CallBackData callBackData){
-        this.callBackData = callBackData;
-    }
+
     public void setData(List<Word> listData){
         this.listData.clear();
         this.listData.addAll(listData);
         notifyDataSetChanged();
     }
-
+    public void markAll(){
+        for (int i = 0 ; i < listData.size(); i++){
+            if (listData.get(i).getStar() == 0){
+                listPosition.add(i);
+                listPositionDelete.add(i);
+                listData.get(i).setStar(1);
+            }
+        }
+        notifyDataSetChanged();
+    }
+    public void cancel(){
+        for (int i = 0 ; i < listData.size(); i++){
+            listPosition.clear();
+            listPositionDelete.clear();
+            listData.get(i).setStar(0);
+        }
+        notifyDataSetChanged();
+    }
     public void setOnClickListener(WordItemClick wordItemClick){
         this.wordItemClick = wordItemClick;}
     @NonNull
@@ -52,21 +73,31 @@ public class ListAdapterWord extends RecyclerView.Adapter<ListAdapterWord.ViewHo
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         holder.textWord.setText(listData.get(position).getWord());
+
         if (listData.get(position).getStar() == 1){
             holder.checkMark.setChecked(true);
+        }else{
+            holder.checkMark.setChecked(false);
         }
-        holder.checkMark.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                callBackData.markWord(listData.get(position));
-            }
-        });
-        holder.mRemove.setOnClickListener(new View.OnClickListener() {
+        holder.checkMark.setOnCheckedChangeListener(null);
+        holder.checkMark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callBackData.deleteWord(listData.get(position));
+                if (listData.get(position).getStar() == 1){
+                    listData.get(position).setStar(0);
+                    listPosition.remove(new Integer(position));
+                    listPositionDelete.remove(new Integer(position));
+                }
+                else{
+                    listData.get(position).setStar(1);
+                    listPosition.add(position);
+                    listPositionDelete.add(position);
+                }
+                notifyDataSetChanged();
+                Log.i("position", String.valueOf(listPosition.size()));
             }
         });
+
     }
 
     @Override
@@ -77,12 +108,10 @@ public class ListAdapterWord extends RecyclerView.Adapter<ListAdapterWord.ViewHo
     public class ViewHolder  extends RecyclerView.ViewHolder{
         TextView textWord;
         CheckBox checkMark;
-        ImageButton mRemove;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             textWord = (TextView) itemView.findViewById(R.id.text_word);
             checkMark = (CheckBox) itemView.findViewById(R.id.mark);
-            mRemove = (ImageButton) itemView.findViewById(R.id.remove);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -98,9 +127,4 @@ public class ListAdapterWord extends RecyclerView.Adapter<ListAdapterWord.ViewHo
         }
 
     }
-    public interface CallBackData{
-        void deleteWord(Word word);
-        void markWord(Word word);
-    }
-
 }

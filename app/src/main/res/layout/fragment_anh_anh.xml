@@ -3,14 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F7E9FA"
+    android:background="@drawable/background"
     tools:context="com.example.ey_application.fragment.AnhAnhFragment" >
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top"
-        android:background="@drawable/borderlinearlayout"
         android:paddingTop="15dp"
         android:paddingBottom="10dp"
         >
@@ -35,6 +34,7 @@
                 android:fontFamily="@font/calibril"
                 android:textSize="20dp"
                 android:text="US"
+                android:textColor="#fff"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="5dp"/>
             <ImageButton
@@ -53,6 +53,7 @@
                 android:fontFamily="@font/calibril"
                 android:textSize="20dp"
                 android:text="UK"
+                android:textColor="#fff"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"/>
         </LinearLayout>
@@ -66,15 +67,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <TextView
-                android:layout_marginLeft="10dp"
                 android:id="@+id/word"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/calibril"
-                android:textSize="30dp"
+                android:layout_marginLeft="10dp"
                 android:layout_marginRight="40dp"
-                android:textColor="#3A0C8A"
+                android:fontFamily="@font/calibril"
+                android:textColor="#0721B5"
+                android:textSize="30dp"
                 android:textStyle="bold">
 
             </TextView>
@@ -92,7 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:textColor="#3A0C8A"
+            android:textColor="#0721B5"
             android:textSize="20dp" />
 
 

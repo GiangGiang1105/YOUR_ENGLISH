@@ -37,7 +37,7 @@ public interface GetForWord {
     Call<List<WordReviews>> listWordReviews(@Query("id_user") int id_user);
     @FormUrlEncoded
     @POST("insertwordreviews.php")
-    Call<MessageFromServer> insertWordReviews(@Field("id_user") int id_user,@Field("word_reviews") String word);
+    Call<MessageFromServer> insertWordReviews(@Field("id_user") int id_user,@Field("word_reviews") String word,@Field("idWord") int idWord);
     @FormUrlEncoded
     @POST("deletewordreviews.php")
     Call<MessageFromServer> deleteWordReviews(@Field("word_reviews") String wordReviews, @Field("id_user") int id_user);

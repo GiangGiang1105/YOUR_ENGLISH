@@ -32,8 +32,8 @@ public class Login_Register extends AppCompatActivity implements RegisterFragmen
 
     private Button mButton;
     private FragmentTransaction ft_add;
-    private String titleButtonLogin = "Register Now?";
-    private String titleButtonRegister = "Login Now?";
+    private String titleButtonLogin = getString(R.string.title_button_login);
+    private String titleButtonRegister = getString(R.string.title_button_register);
     private UsersViewModel usersViewModel;
     private List<Users> usersList;
     @Override
@@ -86,11 +86,11 @@ public class Login_Register extends AppCompatActivity implements RegisterFragmen
     @Override
     public void onBackPressed() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setTitle("Exit Application?");
+        alertDialogBuilder.setTitle(getString(R.string.title_exit));
         alertDialogBuilder
-                .setMessage("Click yes to exit!")
+                .setMessage(getString(R.string.title_exit_click))
                 .setCancelable(false)
-                .setPositiveButton("Yes",
+                .setPositiveButton(getString(R.string.yes),
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 moveTaskToBack(true);
@@ -99,7 +99,7 @@ public class Login_Register extends AppCompatActivity implements RegisterFragmen
                             }
                         })
 
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                .setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
                         dialog.cancel();
@@ -118,15 +118,15 @@ public class Login_Register extends AppCompatActivity implements RegisterFragmen
         for(Users users : usersList){
             if (username.trim().equals(users.getUserName())){
                 /*bool = false;*/
-                Toast.makeText(this,"The user name is already in use!", Toast.LENGTH_SHORT ).show();
+                Toast.makeText(this,getString(R.string.toast_error_username), Toast.LENGTH_SHORT ).show();
                 return;
             }
             if (phone.trim().equals(users.getPhone())){
-                Toast.makeText(this,"The phone number is already in use!", Toast.LENGTH_SHORT ).show();
+                Toast.makeText(this,getString(R.string.toast_error_phone), Toast.LENGTH_SHORT ).show();
                 return;
             }
             if (email.trim().equals(users.getEmail())){
-                Toast.makeText(this,"The email is already in use!", Toast.LENGTH_SHORT ).show();
+                Toast.makeText(this,getString(R.string.toast_error_email), Toast.LENGTH_SHORT ).show();
                 return;
             }
 

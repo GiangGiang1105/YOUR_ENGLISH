@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="Dictionary English"
+        app:title="@string/title_toobar_dictionary"
         android:background="@color/colorPrimaryDark"
         app:titleTextAppearance="@style/CalibrilColorTextAppearance"
         />
@@ -34,39 +34,4 @@
         android:paddingLeft="@dimen/_5sdp"
         android:paddingRight="@dimen/_5sdp"
         app:layout_constraintTop_toBottomOf="@+id/toolbar3" />
-
-    <!--<Button
-        android:id="@+id/move"
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_marginStart="@dimen/_24sdp"
-        android:layout_marginLeft="@dimen/_24sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_15sdp"
-        android:fontFamily="@font/calibril"
-        android:text="Move"
-        android:textSize="@dimen/_18sdp"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
-        app:layout_constraintVertical_bias="0.289" />
-
-    <Button
-        android:id="@+id/delete"
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="@dimen/_40sdp"
-        android:layout_marginRight="@dimen/_24sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginBottom="@dimen/_15sdp"
-        android:fontFamily="@font/calibril"
-        android:text="Delete"
-        android:textAllCaps="false"
-        android:textSize="@dimen/_18sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/move"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
-        app:layout_constraintVertical_bias="0.289" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -32,7 +32,7 @@ import java.util.List;
 public class ViewPagerItemReview extends PagerAdapter implements ResultRecognize {
 
     public interface CallRecognize{
-        void callRecognize(boolean bool);
+        void callRecognize( String word);
     }
     private List<Word> wordList;
     private Context context;
@@ -40,16 +40,15 @@ public class ViewPagerItemReview extends PagerAdapter implements ResultRecognize
     private Volumn volumn;
     TextToSpeech textToSpeech;
     private CallRecognize callRecognize;
-    private MutableLiveData<String> liveDataWordRegconize;
-    public int countTruth = 0;
-    public int countFail = 0;
-    public boolean boolTest;
+    private MutableLiveData<String> liveDataWordRegconize = new MutableLiveData<>();
+    private MutableLiveData<Integer> liveDataWordColor = new MutableLiveData<>();
+    TextView txtWord;
+    ImageButton btnVolumn;
     public ViewPagerItemReview(Context context) {
         this.wordList = new ArrayList<>();
         this.context = context;
         this.volumn = new Volumn(context);
         callRecognize = (CallRecognize) context;
-        liveDataWordRegconize = new MutableLiveData<>();
     }
     public void setData(List<Word> list){
         this.wordList.clear();
@@ -72,23 +71,21 @@ public class ViewPagerItemReview extends PagerAdapter implements ResultRecognize
     public Object instantiateItem(@NonNull ViewGroup container, final int position) {
         inflater = (LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.viewpager_review_item,container,false);
-        TextView txtWord = (TextView) view.findViewById(R.id.word);
-        ImageButton btnVolumn = (ImageButton) view.findViewById(R.id.volumn_word);
+        txtWord = (TextView) view.findViewById(R.id.word);
+        btnVolumn = (ImageButton) view.findViewById(R.id.volumn_word);
         ImageButton btnRecognize = (ImageButton) view.findViewById(R.id.microphone_word);
         final TextView txtRecognize = (TextView) view.findViewById(R.id.textRegconize);
         txtWord.setText(wordList.get(position).getWord());
         liveDataWordRegconize.observe((LifecycleOwner) context , new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                if (s.trim().equals(wordList.get(position).getWord())){
-                    txtRecognize.setTextColor(0xFF0BF415);
-                    countTruth += 1;
-                }
-                else{
-                    txtRecognize.setTextColor(0xFFFF1D0D);
-                    countFail += 1;
-                }
                 txtRecognize.setText(s);
+            }
+        });
+        liveDataWordColor.observe((LifecycleOwner) context, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                txtRecognize.setTextColor(integer);
             }
         });
         btnVolumn.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +99,7 @@ public class ViewPagerItemReview extends PagerAdapter implements ResultRecognize
         btnRecognize.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callRecognize.callRecognize(true);
+                callRecognize.callRecognize(wordList.get(position).getWord());
             }
         });
         container.addView(view);
@@ -115,9 +112,10 @@ public class ViewPagerItemReview extends PagerAdapter implements ResultRecognize
         container.removeView((ConstraintLayout) object);
     }
     @Override
-    public void resultRecognize(String wordRecognize) {
-        if (!wordRecognize.equals("")){
+    public void resultRecognize(String wordRecognize, int color) {
+        if (!wordRecognize.equals("") ){
             liveDataWordRegconize.postValue(wordRecognize);
+            liveDataWordColor.postValue(color);
         }
     }
 

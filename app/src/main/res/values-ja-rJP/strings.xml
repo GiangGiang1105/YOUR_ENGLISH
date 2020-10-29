@@ -1,0 +1,93 @@
+<resources>
+    <string name = "app_name"> EY_APPLICATION </string>
+
+    // NavigationViewとアクティビティメイン
+    <string name = "menu_home">ホーム</string>
+    <string name = "menu_new_word">新しい単語</string>
+    <string name = "menu_review">レビュー</string>
+    <string name = "menu_dictionary">辞書</string>
+    <string name = "menu_word_looked_up">単語が検索されました</string>
+    <string name = "menu_account_setting">アカウント設定</string>
+    <string name = "menu_general_settings">一般設定</string>
+    <string name = "menu_logout">ログアウト</string>
+    <string name = "title_main">あなたの英語</string>
+    //アクティビティ設定全般
+    <string name = "setting_sound">​​サウンドを選択</string>
+    <string name = "mode_language">言語</string>
+    <string name = "setting_notification">通知モードを選択</string>
+    <string name = "sound_mode">サウンドモード</string>
+    <string name = "mode_notification">通知モード</string>
+    <string name = "setting_language">アプリの言語を選択してください</string>
+        //アクティビティ追加ワード
+    <string name = "add">追加</string>
+    <string name = "remove_to">削除先</string>
+    <string name = "delete_all">すべて削除</string>
+    <string name = "mark_all">すべてマーク</string>
+    <string name = "cancel">キャンセル</string>
+        //アクティビティ辞書
+    <string name = "title_toobar_dictionary">辞書英語</string>
+        //アクティビティ設定全般
+    <string name = "title_toolbar_setting">一般設定</string>
+        //アクティビティログイン
+    <string name = "btn_change_page">今すぐ登録しますか？ </string>
+        //アクティビティテスト
+    <string name = "title_test">テスト</string>
+    <string name = "btn_search">検索</string>
+        //アクティビティworddetail
+    <string name = "tab_eng"> Eng Eng </string>
+    <string name = "tab_synonyms">同義語</string>
+    <string name = "tab_example">例</string>
+        //フラグメントホーム
+    <string name = "btn_add_word">新しい単語</string>
+    <string name = "btn_test">テスト</string>
+    <string name = "btn_dictionary">辞書</string>
+        //フラグメントのログインと登録
+    <string name = "title_register">登録</string>
+    <string name = "title_login">ログイン</string>
+    <string name = "hint_username">ユーザー名</string>
+    <string name = "hint_email">メール</string>
+    <string name = "hint_password">パスワード</string>
+    <string name = "hint_password_again">パスワードをもう一度</string>
+    <string name = "hint_phone">電話</string>
+    <string name = "btn_loginuser">ログイン</string>
+    <string name = "btn_registeruser">登録</string>
+        // us uk
+    <string name = "btn_us">US</string>
+    <string name = "btn_uk">UK</string>
+    <string name = "btn_next">次へ</string>
+    <string name = "hint_input_mean">単語の意味を入力してください</string>
+    <string name="key_sound">sound</string>
+    <string name="key_notification">notification</string>
+    <string name="key_language">language</string>
+    <string name = "test_meaning">意味を確認する</string>
+    <string name = "test_pronounce">レビューの発音</string>
+    <string name = "delete_list">すべてのリストを削除</string>
+    <string name = "title_add_word">新しい単語</string>
+    <string name = "lang_viet">ベトナム語</string>
+    <string name = "lang_eng">英語</string>
+    <string name = "lang_fr">フランス語</string>
+    <string name = "lang_ko">韓国語</string>
+    <string name = "lang_ja">日本語</string>
+    <string name = "the_word">単語</string>
+    <string name = "message_save_word">保存する必要のある単語を入力してください！</string>
+    <string name = "question_add_all">選択したすべての単語をチェックリストに追加しますか？</string>
+    <string name = "yes">はい</string>
+    <string name = "no">いいえ</string>
+    <string name = "question_delete_all">選択したすべての単語を削除しますか？</string>
+    <string name = "server_error">サーバーエラー！</string>
+    <string name = "message_add_review">レビューリストに単語を追加しました！</string>
+    <string name = "message_remove_review">レビューリストから単語が削除されました！</string>
+    <string name = "message_delete_all_word">すべての単語を削除しました</string>
+    <string name = "message_add_all_word_review">すべての単語をリストレビューワードに追加しました</string>
+    <string name = "title_button_login">今すぐ登録しますか？</string>
+    <string name = "title_button_register">今すぐログインしますか？</string>
+    <string name = "title_exit">アプリケーションを終了しますか？</string>
+    <string name = "title_exit_click"> [はい]をクリックして終了します！</string>
+    <string name = "toast_error_username">ユーザー名はすでに使用されています！</string>
+    <string name = "toast_error_phone">電話番号はすでに使用されています！</string>
+    <string name = "toast_error_email">メールはすでに使用されています！</string>
+    <string name = "question_add_word">よろしいですか、あなたは決断を下したかったのです</string>
+    <string name = "choose_add_word">単語を追加</string>
+    <string name = "choose_exit">終了</string>
+    <string name = "message_delete_review">すべての単語レビューを削除しました！</string>
+</resources>

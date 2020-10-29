@@ -122,17 +122,17 @@ public class Dictionary extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    private void createDialogAddToReviewsList(final WordDictionary wordDictionary){
+    /*private void createDialogAddToReviewsList(final WordDictionary wordDictionary){
         AlertDialog.Builder alBuilder = new AlertDialog.Builder(this);
         alBuilder.setMessage("Do you want add this word to your reviews list word?");
-        alBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        alBuilder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 databaseAccess.markWord(wordDictionary.getId(), 1);
                 wordViewModel.insertWordReviews(id_user, wordDictionary.getWord());
             }
         });
-        alBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        alBuilder.setNegativeButton(getString(R.), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -162,7 +162,7 @@ public class Dictionary extends AppCompatActivity {
 
     }
 
-
+*/
 
 
 }

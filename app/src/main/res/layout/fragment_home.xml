@@ -24,7 +24,7 @@
                 android:layout_marginRight="@dimen/_5sdp"
                 android:background="@drawable/background_main"
                 android:fontFamily="@font/calibril"
-                android:text="Your new word"
+                android:text="@string/btn_add_word"
                 android:textAllCaps="false"
                 android:textColor="#fff"
                 android:textSize="@dimen/_18sdp" />
@@ -37,7 +37,7 @@
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:background="@drawable/background_main1"
                 android:fontFamily="@font/calibril"
-                android:text="Review"
+                android:text="@string/btn_test"
                 android:textAllCaps="false"
                 android:textColor="#fff"
                 android:textSize="@dimen/_18sdp" />
@@ -56,7 +56,7 @@
                 android:layout_marginRight="@dimen/_5sdp"
                 android:background="@drawable/background_main2"
                 android:fontFamily="@font/calibril"
-                android:text="Dictionary English "
+                android:text="@string/btn_dictionary"
                 android:textAllCaps="false"
                 android:textColor="#fff"
                 android:textSize="@dimen/_18sdp" />

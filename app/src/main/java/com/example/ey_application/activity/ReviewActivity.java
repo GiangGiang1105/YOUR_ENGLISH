@@ -24,11 +24,10 @@ import com.example.ey_application.session.SessionUser;
 
 import java.util.List;
 
-public class TestActivity extends AppCompatActivity implements ResultCallBackWord {
+public class ReviewActivity extends AppCompatActivity implements ResultCallBackWord {
     private Toolbar toolbar;
     private RecyclerView recyclerListReviews;
     private ListWordReviewsAdapter listWordReviewsAdapter;
-    private List<WordReviews> wordReviewsList;
     private LinearLayoutManager llm;
     private WordViewModel wordViewModel;
     SessionUser sessionUser;
@@ -39,7 +38,6 @@ public class TestActivity extends AppCompatActivity implements ResultCallBackWor
         setContentView(R.layout.activity_main_reviews);
         getView();
         toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Reviews");
         setSupportActionBar(toolbar);
         wordViewModel = ViewModelProviders.of(this).get(WordViewModel.class);
         listWordReviewsAdapter = new ListWordReviewsAdapter(this);
@@ -71,12 +69,12 @@ public class TestActivity extends AppCompatActivity implements ResultCallBackWor
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.testMeaning:
-                Intent intent = new Intent(TestActivity.this, Test.class);
+                Intent intent = new Intent(ReviewActivity.this, Review.class);
                 intent.putExtra("testtype", 0);
                 startActivity(intent);
                 break;
             case R.id.testPronounce:
-                Intent intent1 = new Intent(TestActivity.this, Test.class);
+                Intent intent1 = new Intent(ReviewActivity.this, Review.class);
                 intent1.putExtra("testtype", 1);
                 startActivity(intent1);
                 break;
@@ -124,10 +122,10 @@ public class TestActivity extends AppCompatActivity implements ResultCallBackWor
     @Override
     public void onDeleteListReviewsResult(boolean bool) {
         if (bool){
-            Toast.makeText(this, "You deleted all word reviews!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.message_delete_review), Toast.LENGTH_SHORT).show();
         }
         else{
-            Toast.makeText(this, "Server Error!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.server_error), Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -4,61 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_addWord"
     tools:context=".activity.AddWord">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
         android:layout_gravity="top"
-        app:titleTextAppearance="@style/CalibrilColorTextAppearance"
+        android:background="@color/colorPrimaryDark"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:titleTextAppearance="@style/CalibrilColorTextAppearance" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_50sdp"
         android:orientation="horizontal"
-        android:weightSum="7"
         android:paddingTop="@dimen/_10sdp"
+        android:weightSum="7"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar">
 
         <EditText
             android:id="@+id/edit_word"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_10sdp"
-            android:layout_weight="5"
-            android:background="@drawable/background_edittext"
+            android:layout_weight="6"
             android:ems="10"
-            android:textSize="@dimen/_18sdp"
             android:fontFamily="@font/calibril"
-            android:hint="The word "
-            android:textColorHint="#EFEBEB"
-            android:textColor="#fff"
+            android:hint="@string/the_word"
             android:inputType="textPersonName"
-            android:paddingLeft="@dimen/_10sdp" />
+            android:paddingLeft="@dimen/_10sdp"
+            android:textColor="@color/color_word"
+            android:textColorHint="@color/color_hint"
+            android:textSize="@dimen/_18sdp" />
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_note"
-            android:layout_width="wrap_content"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="@dimen/_10sdp"
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/_10sdp"
-            android:layout_weight="2"
-            android:background="@drawable/bg_btn_add"
+            android:layout_weight="1"
             android:fontFamily="@font/calibril"
-            android:text="Add"
-            android:textSize="@dimen/_18sdp"
-            android:textColor="#fff"
-            android:textAllCaps="false" />
+            android:src="@drawable/check" />
 
 
     </LinearLayout>
@@ -78,52 +73,44 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/_10sdp"
+        android:paddingRight="@dimen/_10sdp"
+        android:weightSum="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:paddingLeft="@dimen/_10sdp"
-        android:paddingRight="@dimen/_10sdp"
-        android:weightSum="4"
         app:layout_constraintTop_toBottomOf="@+id/recycleView">
+
         <Button
             android:id="@+id/removeTo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Remove To"
-            android:textColor="#fff"
-            android:textAllCaps="false"
             android:layout_marginRight="@dimen/_5sdp"
-            android:background="@drawable/background"/>
+            android:layout_weight="1"
+            android:text="@string/remove_to"
+            android:textAllCaps="false"
+            android:textColor="#000" />
+
         <Button
             android:id="@+id/deleteAll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Delete All"
-            android:textColor="#fff"
-            android:textAllCaps="false"
             android:layout_marginRight="@dimen/_5sdp"
-            android:background="@drawable/background"/>
+            android:layout_weight="1"
+            android:text="@string/delete_all"
+            android:textAllCaps="false"
+            android:textColor="#000" />
+
         <Button
             android:id="@+id/markAll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mark All"
-            android:layout_weight="1"
-            android:textColor="#fff"
-            android:textAllCaps="false"
             android:layout_marginRight="@dimen/_5sdp"
-            android:background="@drawable/background"/>
-        <Button
-            android:id="@+id/cancelAll"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cancel"
             android:layout_weight="1"
-            android:textColor="#fff"
+            android:text="@string/mark_all"
             android:textAllCaps="false"
-            android:background="@drawable/background"/>
+            android:textColor="#000" />
+
     </LinearLayout>
 
 

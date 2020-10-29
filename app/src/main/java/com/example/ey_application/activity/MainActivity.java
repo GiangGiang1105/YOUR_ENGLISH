@@ -8,13 +8,16 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.ey_application.R;
 import com.example.ey_application.fragment.HomeFragment;
+import com.example.ey_application.utils.LocaleHelper;
 import com.google.android.material.navigation.NavigationView;
 
 
@@ -26,9 +29,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences prefs = getSharedPreferences("CommonPrefs",
+                Activity.MODE_PRIVATE);
+        String lang =	prefs.getString("Language", "vi");
+        LocaleHelper.loadLocale(this);
         setContentView(R.layout.activity_main);
         toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Your English");
         setSupportActionBar(toolbar);
         actionbar = getSupportActionBar();
         actionbar.setDisplayHomeAsUpEnabled(true);
@@ -37,8 +43,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         getSupportFragmentManager().beginTransaction().add(R.id.frame_home, new HomeFragment()).commit();
-
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -52,11 +58,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onBackPressed() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setTitle("Exit Application?");
+        alertDialogBuilder.setTitle(getString(R.string.title_exit));
         alertDialogBuilder
-                .setMessage("Click yes to exit!")
+                .setMessage(getString(R.string.title_exit_click))
                 .setCancelable(false)
-                .setPositiveButton("Yes",
+                .setPositiveButton(getString(R.string.yes),
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 moveTaskToBack(true);
@@ -65,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             }
                         })
 
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                .setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
                         dialog.cancel();
@@ -85,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
             case R.id.nav_review:
-                Intent intent1 = new Intent(MainActivity.this, TestActivity.class);
+                Intent intent1 = new Intent(MainActivity.this, ReviewActivity.class);
                 startActivity(intent1);
                 break;
             case R.id.nav_dictionary:
@@ -95,8 +101,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_word:
                 break;
             case R.id.nav_account_setting:
+
                 break;
             case R.id.nav_general_settings:
+                Intent intent5 = new Intent(MainActivity.this, GeneralSetting.class);
+                startActivity(intent5);
                 break;
             case R.id.nav_logout:
                 break;

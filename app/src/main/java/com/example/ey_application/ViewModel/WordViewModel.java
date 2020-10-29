@@ -33,18 +33,18 @@ public class WordViewModel extends ViewModel implements ResultCallback {
     public void getListWord(int id_user) {
         wordReponsitory.getListWordFromApi(id_user);
     }
-    public void deleteWord(int id, int id_user){
+    /*public void deleteWord(int id, int id_user){
         wordReponsitory.deleteWord(id, id_user);
     }
     public void markWord(int id, int boolStar, int id_user){
         wordReponsitory.markWord(id, boolStar, id_user);
     }
-    public void insertWordReviews(int id_user, String word) {
+   *//* public void insertWordReviews(int id_user, String word) {
         wordReponsitory.insertWordReviews(id_user, word);
-    }
+    }*//*
     public void deleteWordReviews(int id_user, String word) {
         wordReponsitory.deleteWordReviews( word, id_user);
-    }
+    }*/
     public void deleteListWordReviews(int id_user) {
         wordReponsitory.deleteListWordReviews(id_user);
         wordReponsitory.unMarkWord(id_user);
@@ -55,8 +55,8 @@ public class WordViewModel extends ViewModel implements ResultCallback {
     public void getListWordReviews(int id_user){
         wordReponsitory.getListWordReviews(id_user);
     }
-    public void insertAllWord(int idUser, List<String> listWord){
-        wordReponsitory.insertAllWord(idUser, listWord);
+    public void insertAllWord(int idUser, List<String> listWord, List<Integer> listId){
+        wordReponsitory.insertAllWord(idUser, listWord, listId);
     }
     public void deleteAllWord(int idUser, List<Integer> listId){
         wordReponsitory.deleteAllWord(idUser, listId);

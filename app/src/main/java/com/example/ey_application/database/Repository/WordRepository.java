@@ -105,7 +105,7 @@ public class WordRepository {
             }
         });
     }
-    public void insertWordReviews(final int id_user, String word) {
+   /* public void insertWordReviews(final int id_user, String word) {
         getForWord.insertWordReviews(id_user, word.trim()).enqueue(new Callback<MessageFromServer>() {
             @Override
             public void onResponse(@NotNull Call<MessageFromServer> call, @NotNull Response<MessageFromServer> response) {
@@ -120,7 +120,7 @@ public class WordRepository {
                 Log.d(TAG, "onFailure: insertWord: " + t.getMessage());
             }
         });
-    }
+    }*/
     public void deleteWordReviews(String wordReview, final int id_user){
         getForWord.deleteWordReviews(wordReview.trim(), id_user).enqueue(new Callback<MessageFromServer>() {
             @Override
@@ -202,10 +202,10 @@ public class WordRepository {
         }
 
     }
-    public void insertAllWord(final int idUser, List<String> list){
+    public void insertAllWord(final int idUser, List<String> list,  List<Integer> listId){
         final int[] i = {0};
-        for (String word : list){
-            getForWord.insertWordReviews(idUser,word ).enqueue(new Callback<MessageFromServer>() {
+        for (int j = 0; j < list.size(); j++){
+            getForWord.insertWordReviews(idUser,list.get(j), listId.get(j) ).enqueue(new Callback<MessageFromServer>() {
                 @Override
                 public void onResponse(Call<MessageFromServer> call, Response<MessageFromServer> response) {
                     if (response.isSuccessful()){

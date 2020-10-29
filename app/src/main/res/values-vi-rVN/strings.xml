@@ -1,0 +1,93 @@
+<resources>
+    <string name = "app_name"> EY_APPLICATION </string>
+
+    // NavigationView và hoạt động chính
+    <string name = "menu_home"> Trang chủ </string>
+    <string name = "menu_new_word"> Từ mới của bạn </string>
+    <string name = "menu_review"> Ôn tập </string>
+    <string name = "menu_dictionary"> Từ điển </string>
+    <string name = "menu_word_looked_up"> Từ được tra cứu </string>
+    <string name = "menu_account_setting"> Cài đặt tài khoản </string>
+    <string name = "menu_general_settings"> Cài đặt chung </string>
+    <string name = "menu_logout"> Đăng xuất </string>
+    <string name = "title_main"> Tiếng Anh của bạn </string>
+    // cài đặt hoạt động chung
+    <string name = "setting_sound"> ​​Chọn âm thanh </string>
+    <string name = "mode_language"> Ngôn ngữ </string>
+    <string name = "setting_notification"> Chọn chế độ thông báo </string>
+    <string name = "sound_mode"> Chế độ âm thanh </string>
+    <string name = "mode_notification"> Chế độ thông báo </string>
+    <string name = "setting_language"> Chọn ngôn ngữ cho ứng dụng </string>
+    // hoạt động thêm từ
+    <string name = "add"> Thêm </string>
+    <string name = "remove_to"> Di chuyển tới </string>
+    <string name = "delete_all"> Xóa tất cả </string>
+    <string name = "mark_all"> Đánh dấu tất cả </string>
+    <string name = "huy"> Huỷ </string>
+    // từ điển hoạt động
+    <string name = "title_toobar_dictionary"> Từ điển tiếng Anh </string>
+    // cài đặt hoạt động chung
+    <string name = "title_toolbar_setting"> Cài đặt Chung </string>
+    // đăng nhập hoạt động
+    <string name = "btn_change_page"> Đăng ký ngay bây giờ? </string>
+    // kiểm tra hoạt động
+    <string name = "title_test"> Ôn tập </string>
+    <string name = "btn_search"> Tìm kiếm </string>
+    // worddetail hành động
+    <string name = "tab_eng"> Anh Anh </string>
+    <string name = "tab_synonyms"> Từ đồng nghĩa </string>
+    <string name = "tab_example"> Ví dụ </string>
+    // phân mảnh nhà
+    <string name = "btn_add_word"> Từ mới của bạn </string>
+    <string name = "btn_test"> Kiểm tra </string>
+    <string name = "btn_dictionary"> Từ điển </string>
+    // đăng nhập và đăng ký fagment
+    <string name = "title_register"> ĐĂNG KÝ </string>
+    <string name = "title_login"> ĐĂNG NHẬP </string>
+    <string name = "hint_username"> Tên người dùng </string>
+    <string name = "hint_email"> Email </string>
+    <string name = "hint_password"> Mật khẩu </string>
+    <string name = "hint_password_again"> Nhập lại mật khẩu </string>
+    <string name = "hint_phone"> Điện thoại </string>
+    <string name = "btn_loginuser"> Đăng nhập </string>
+    <string name = "btn_registeruser"> Đăng ký </string>
+    // chúng tôi uk
+    <string name = "btn_us"> US </string>
+    <string name = "btn_uk"> UK </string>
+    <string name = "btn_next"> Tiếp theo </string>
+    <string name = "hint_input_mean"> Nhập nghĩa của từ </string>
+    <string name="key_sound">sound</string>
+    <string name="key_notification">notification</string>
+    <string name="key_language">language</string>
+    <string name="test_meaning">Kiểm tra nghĩa</string>
+    <string name="test_pronounce">Ôn tập phát âm</string>
+    <string name="delete_list">Xóa tất cả</string>
+    <string name = "title_add_word"> Từ mới của bạn </string>
+    <string name = "lang_viet"> Tiếng Việt </string>
+    <string name = "lang_eng"> Tiếng Anh </string>
+    <string name = "lang_fr"> Tiếng Pháp </string>
+    <string name = "lang_ko"> Tiếng Hàn </string>
+    <string name = "lang_ja"> Tiếng Nhật </string>
+    <string name="the_word">Từ</string>
+    <string name = "message_save_word"> Vui lòng nhập từ bạn cần lưu! </string>
+    <string name = "question_add_all"> Bạn có muốn thêm tất cả các từ đã chọn vào danh sách ôn tập không? </string>
+    <string name = "yes"> Có </string>
+    <string name = "no"> Không </string>
+    <string name = "question_delete_all"> Bạn có muốn xóa tất cả các từ đã chọn không? </string>
+    <string name = "server_error"> Lỗi Máy chủ! </string>
+    <string name = "message_add_review"> Bạn đã thêm một từ vào danh sách ôn tập của mình! </string>
+    <string name = "message_remove_review"> Bạn đã xóa một từ khỏi danh sách ôn tập của mình! </string>
+    <string name = "message_delete_all_word"> Bạn đã xóa tất cả các từ </string>
+    <string name = "message_add_all_word_review"> Bạn đã thêm tất cả các từ vào danh sách từ ôn tập </string>
+    <string name = "title_button_login"> Đăng ký ngay bây giờ? </string>
+    <string name = "title_button_register"> Đăng nhập ngay bây giờ? </string>
+    <string name = "title_exit"> Thoát ứng dụng? </string>
+    <string name = "title_exit_click"> Nhấp vào có để thoát! </string>
+    <string name = "toast_error_username"> Tên người dùng đã được sử dụng! </string>
+    <string name = "toast_error_phone"> Số điện thoại đã được sử dụng! </string>
+    <string name = "toast_error_email"> Email đã được sử dụng! </string>
+    <string name = "question_add_word"> Bạn có chắc chắn không, Bạn muốn đưa ra quyết định? </string>
+    <string name = "choose_add_word"> Thêm từ </string>
+    <string name = "choose_exit"> Thoát </string>
+    <string name = "message_delete_review"> Bạn đã xóa tất cả các từ trong danh sách ôn tập! </string>
+</resources>

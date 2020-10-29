@@ -1,0 +1,93 @@
+<resources>
+    <string name = "app_name"> EY_APPLICATION </string>
+
+    // NavigationView et activité principale
+    <string name = "menu_home"> Accueil </string>
+    <string name = "menu_new_word"> Votre nouveau mot </string>
+    <string name = "menu_review"> Avis </string>
+    <string name = "menu_dictionary"> Dictionnaire </string>
+    <string name = "menu_word_looked_up"> Word a recherché </string>
+    <string name = "menu_account_setting"> Paramètres du compte </string>
+    <string name = "menu_general_settings"> Paramètres généraux </string>
+    <string name = "menu_logout"> Déconnexion </string>
+    <string name = "title_main"> Votre anglais </string>
+    // paramètre d'activité général
+    <string name = "setting_sound"> ​​Choisissez un son </string>
+    <string name = "mode_language"> Langue </string>
+    <string name = "setting_notification"> Choisissez le mode de notification </string>
+    <string name = "sound_mode"> Mode son </string>
+    <string name = "mode_notification"> Mode de notification </string>
+    <string name = "setting_language"> Choisissez une langue pour l`application </string>
+    // activité ajouter un mot
+    <string name = "add"> Ajouter </string>
+    <string name = "remove_to"> Supprimer vers </string>
+    <string name = "delete_all"> Supprimer tout </string>
+    <string name = "mark_all"> Tout marquer </string>
+    <string name = "cancel"> Annuler </string>
+    // dictionnaire d'activités
+    <string name = "title_toobar_dictionary"> Dictionnaire anglais </string>
+    // paramètre d'activité général
+    <string name = "title_toolbar_setting"> Paramètres généraux </string>
+    // connexion à l'activité
+    <string name = "btn_change_page"> S`inscrire maintenant? </string>
+    // test d'activité
+    <string name = "title_test"> Test </string>
+    <string name = "btn_search"> Recherche </string>
+    // actvity worddetail
+    <string name = "tab_eng"> Eng Eng </string>
+    <string name = "tab_synonyms"> Synonymes </string>
+    <string name = "tab_example"> Exemple </string>
+    // accueil fragment
+    <string name = "btn_add_word"> Votre nouveau mot </string>
+    <string name = "btn_test"> Test </string>
+    <string name = "btn_dictionary"> Dictionnaire </string>
+    // connexion et inscription de mode
+    <string name = "title_register"> ENREGISTRER </string>
+    <string name = "title_login"> LOGIN </string>
+    <string name = "hint_username">Nom d`utilisateur</string>
+    <string name = "hint_email"> E-mail </string>
+    <string name = "hint_password"> Mot de passe </string>
+    <string name = "hint_password_again"> Mot de passe à nouveau </string>
+    <string name = "hint_phone"> Téléphone </string>
+    <string name = "btn_loginuser"> Connexion </string>
+    <string name = "btn_registeruser"> S`inscrire </string>
+    //T'es nul
+    <string name = "btn_us"> US </string>
+    <string name = "btn_uk"> UK </string>
+    <string name = "btn_next"> Suivant </string>
+    <string name = "hint_input_mean"> Saisissez la signification du mot </string>
+    <string name="key_sound">sound</string>
+    <string name="key_notification">notification</string>
+    <string name="key_language">language</string>
+    <string name = "test_meaning"> Revoir la signification </string>
+    <string name = "test_pronounce"> Révision de la prononciation </string>
+    <string name = "delete_list"> Supprimer toute la liste </string>
+    <string name = "title_add_word"> Votre nouveau mot </string>
+    <string name = "lang_viet"> vietnamien </string>
+    <string name = "lang_eng"> Anglais </string>
+    <string name = "lang_fr"> Français </string>
+    <string name = "lang_ko"> Coréen </string>
+    <string name = "lang_ja"> Japonais </string>
+    <string name = "the_word"> Word </string>
+    <string name = "message_save_word"> Veuillez saisir le mot que vous devez enregistrer! </string>
+    <string name = "question_add_all"> Voulez-vous ajouter tous les mots sélectionnés à la liste de contrôle? </string>
+    <string name = "yes"> Oui </string>
+    <string name = "no"> Non </string>
+    <string name = "question_delete_all"> Voulez-vous supprimer tous les mots sélectionnés? </string>
+    <string name = "server_error"> Erreur du serveur! </string>
+    <string name = "message_add_review"> Vous avez ajouté un mot à votre liste de révision! </string>
+    <string name = "message_remove_review"> Vous étiez en train de supprimer un mot de votre liste d`avis! </string>
+    <string name = "message_delete_all_word"> Vous étiez supprimer tous les mots </string>
+    <string name = "message_add_all_word_review"> Vous étiez ajouter tous les mots au mot des critiques de la liste </string>
+    <string name = "title_button_login"> S`inscrire maintenant? </string>
+    <string name = "title_button_register"> Connectez-vous maintenant? </string>
+    <string name = "title_exit"> Quitter l`application? </string>
+    <string name = "title_exit_click"> Cliquez sur oui pour quitter! </string>
+    <string name = "toast_error_username"> Le nom d`utilisateur est déjà utilisé! </string>
+    <string name = "toast_error_phone"> Le numéro de téléphone est déjà utilisé! </string>
+    <string name = "toast_error_email"> L`e-mail est déjà utilisé! </string>
+    <string name = "question_add_word"> Êtes-vous sûr, vous vouliez prendre une décision </string>
+    <string name = "choose_add_word"> Ajouter un mot </string>
+    <string name = "choose_exit"> Quitter </string>
+    <string name = "message_delete_review"> Vous avez supprimé toutes les critiques de mots! </string>
+</resources>

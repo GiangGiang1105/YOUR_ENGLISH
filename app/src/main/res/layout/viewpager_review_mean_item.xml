@@ -30,7 +30,7 @@
         android:layout_marginRight="@dimen/_20sdp"
         android:background="@drawable/background_edittext"
         android:fontFamily="@font/calibril"
-        android:hint="Input the meaning of the word"
+        android:hint="@string/hint_input_mean"
         android:paddingLeft="@dimen/_10sdp"
         android:textColor="#fff"
         android:textColorHint="#fff"

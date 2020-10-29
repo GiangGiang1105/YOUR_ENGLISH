@@ -22,8 +22,6 @@ import java.util.List;
 public class WordDetailViewModel extends ViewModel implements WordDetailReponsitory.WordDetailResult {
     private WordDetailReponsitory wordReponsitory;
     public MutableLiveData<DataWord> dataWordMutableLiveData = new MutableLiveData<>();
-    private HashMap<Integer, DataViewPager> hashMapWord;
-    public MutableLiveData<HashMap<Integer, DataViewPager>> dataWordDetailMutableLiveData = new MutableLiveData<>();
     public void init(){
         wordReponsitory = WordDetailReponsitory.getInstance((WordDetailReponsitory.WordDetailResult) this);
 

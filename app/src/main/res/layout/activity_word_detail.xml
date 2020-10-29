@@ -20,18 +20,18 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Eng Eng "
+            android:text="@string/tab_eng"
             />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Synonyms" />
+            android:text="@string/tab_synonyms" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Example" />
+            android:text="@string/tab_example" />
     </com.google.android.material.tabs.TabLayout>
     <LinearLayout
         android:layout_width="match_parent"

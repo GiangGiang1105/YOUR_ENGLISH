@@ -1,9 +1,7 @@
 package com.example.ey_application.activity;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -14,9 +12,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -43,9 +38,9 @@ import com.example.ey_application.session.SessionUser;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
-public class Test extends AppCompatActivity implements ViewPagerItemDetail.ChangerPager, ViewPagerItemReview.CallRecognize, ViewPagerItemMeanReview.TranslateText {
+
+public class Review extends AppCompatActivity implements ViewPagerItemDetail.ChangerPager, ViewPagerItemReview.CallRecognize, ViewPagerItemMeanReview.TranslateText {
 
     private static final int RECOGNIZE_RESULT = 1;
     private ViewPager viewPager;
@@ -72,6 +67,7 @@ public class Test extends AppCompatActivity implements ViewPagerItemDetail.Chang
     private ResultTranslate resultTranslate;
     private int scoreTest = 0;
     private Score score;
+    private String wordTest;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,7 +82,7 @@ public class Test extends AppCompatActivity implements ViewPagerItemDetail.Chang
         wordViewModel = ViewModelProviders.of(this).get(WordViewModel.class);
         wordDetailViewModel = ViewModelProviders.of(this).get(WordDetailViewModel.class);
         wordDetailViewModel.init();
-        translateViewModel = ViewModelProviders.of(Test.this).get(TranslateViewModel.class);
+        translateViewModel = ViewModelProviders.of(Review.this).get(TranslateViewModel.class);
         translateViewModel.init();
         sessionUser = new SessionUser(getApplicationContext());
         sessionUser.getPreferences();
@@ -115,8 +111,8 @@ public class Test extends AppCompatActivity implements ViewPagerItemDetail.Chang
             viewPager.setAdapter(viewPagerItemReview);
         }
         else{
-            Toast.makeText(Test.this, "Error", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(Test.this, MainActivity.class);
+            Toast.makeText(Review.this, "Error", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(Review.this, MainActivity.class);
             startActivity(intent);
         }
         viewPager.beginFakeDrag();
@@ -141,18 +137,14 @@ public class Test extends AppCompatActivity implements ViewPagerItemDetail.Chang
                 }
             }
         });
-        if (typeTest == 0){
-            wordViewModel.showScore(id_user, typeTest);
-        }
-        else if (typeTest == 1){
-            wordViewModel.showScore(id_user, typeTest);
-        }
+        wordViewModel.showScore(id_user, typeTest);
         wordViewModel.listScore.observe(this, new Observer<List<Score>>() {
             @Override
             public void onChanged(List<Score> scores) {
                 if (scores.size() != 0){
                     score = scores.get(0);
-                    scoreTest += scores.get(0).getTruth() * 100;
+                    scoreTest = scores.get(0).getTruth() * 100;
+                    scoreView.setText(""+scoreTest);
                 }
             }
         });
@@ -162,8 +154,8 @@ public class Test extends AppCompatActivity implements ViewPagerItemDetail.Chang
 
     private void setDialog(){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Are you sure, You wanted to make decision");
-                alertDialogBuilder.setPositiveButton("Add word",
+        alertDialogBuilder.setMessage(getString(R.string.question_add_word));
+                alertDialogBuilder.setPositiveButton(getString(R.string.choose_add_word),
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface arg0, int arg1) {
@@ -171,7 +163,7 @@ public class Test extends AppCompatActivity implements ViewPagerItemDetail.Chang
                             }
                         });
 
-        alertDialogBuilder.setNegativeButton("Exit",new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setNegativeButton(getString(R.string.choose_exit),new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 intentExit();
@@ -218,9 +210,11 @@ public class Test extends AppCompatActivity implements ViewPagerItemDetail.Chang
         viewPager = findViewById(R.id.viewPager);
         mSearch = findViewById(R.id.search);
         mSwitch = findViewById(R.id.switch_view);
+        mSwitch.setEnabled(false);
         viewPagerDetail = findViewById(R.id.viewdetail);
         scoreView = findViewById(R.id.score);
         scoreView.setText(String.valueOf(scoreTest));
+        progressTest = findViewById(R.id.progressTest);
     }
 
     @Override
@@ -229,59 +223,60 @@ public class Test extends AppCompatActivity implements ViewPagerItemDetail.Chang
            mSwitch.setChecked(false);
            mCureentPage = mCureentPage + 1;
            if (mCureentPage == wordList.size() ){
-               Intent intent = new Intent(this, Score.class);
+               Intent intent = new Intent(this, ScoreActivity.class);
                startActivity(intent);
                return;
            }
            position.postValue(mCureentPage);
            viewPager.setCurrentItem(mCureentPage);
            viewPagerDetail.setVisibility(View.INVISIBLE);
-           if (typeTest == 0){
-               if (viewPagerItemMeanReview.boolTest){
-                   score.setTruth(score.getTruth() +1);
-               }
-               else{
-                   score.setFail(score.getFail() +1);
-               }
-               wordViewModel.updateScore( score.getIdUser(),score.getKingOfReview(), score.getTruth(), score.getFail());
-           }
-           else if (typeTest == 1){
-               //Score score = new Score(id_user, codeTest, typeTest,  viewPagerItemReview.countTruth, viewPagerItemReview.countFail);
-              // wordViewModel.updateScore(score);
-           }
-
-
+           wordViewModel.updateScore( score.getIdUser(),score.getKingOfReview(), score.getTruth(), score.getFail());
+           wordTest = "";
+           progressTest.setProgress(progressTest.getProgress() + (int)100/wordList.size());
+           mSwitch.setEnabled(false);
        }
     }
 
     @Override
-    public void callRecognize(boolean bool) {
-        if (bool){
-            Intent speachIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-            speachIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-            speachIntent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speach to text");
-            startActivityForResult(speachIntent, RECOGNIZE_RESULT);
-        }
+    public void callRecognize(String word ) {
+        mSwitch.setEnabled(true);
+        wordTest = word;
+        Intent speachIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        speachIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        speachIntent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speach to text");
+        startActivityForResult(speachIntent, RECOGNIZE_RESULT);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == RECOGNIZE_RESULT && resultCode == RESULT_OK){
             ArrayList<String> recognizeWord = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            resultRecognize.resultRecognize(recognizeWord.get(0).toString());
+            if (recognizeWord.get(0).toLowerCase().trim().equals(wordTest.toLowerCase().trim())){
+                resultRecognize.resultRecognize(recognizeWord.get(0), 0xFF0BF415);
+                score.setTruth(score.getTruth() +1);
+            }
+            else{
+                resultRecognize.resultRecognize(recognizeWord.get(0), 0xFFFF1D0D);
+            }
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
-    public void sendToTranslateActivity(String text) {
-        if (text!= null){
-            translateViewModel.translate(text).observe(this, new Observer<String>() {
-                @Override
-                public void onChanged(String s) {
-                   resultTranslate.resultTranslate(s);
+    public void sendToTranslateActivity(final String wordTest, String word ) {
+        mSwitch.setEnabled(true);
+        translateViewModel.translate(word).observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                if (wordTest.toLowerCase().trim().equals(s.toLowerCase().trim())){
+                    resultTranslate.resultTranslate(0xFF0BF415);
+                    score.setTruth(score.getTruth() +1);
                 }
-            });
-        }
+                else{
+                    score.setFail(score.getFail() + 1);
+                    resultTranslate.resultTranslate(0xFFFF1D0D);
+                }
+            }
+        });
     }
 }

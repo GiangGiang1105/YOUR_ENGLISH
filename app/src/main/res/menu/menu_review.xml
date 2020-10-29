@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/testMeaning"
-        android:title="Test Meaning"
+        android:title="@string/test_meaning"
         app:showAsAction="never" />
     <item
         android:id="@+id/testPronounce"
-        android:title="Test Pronounce"
+        android:title="@string/test_pronounce"
         app:showAsAction="never" />
     <item
         android:id="@+id/deleteList"
-        android:title="Delete All List"
+        android:title="@string/delete_list"
         app:showAsAction="never" />
 
 </menu>

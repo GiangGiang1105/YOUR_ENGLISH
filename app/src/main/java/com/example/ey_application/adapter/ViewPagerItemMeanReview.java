@@ -36,15 +36,14 @@ import java.util.List;
 public class ViewPagerItemMeanReview extends PagerAdapter implements ResultTranslate {
 
     public interface TranslateText{
-        void sendToTranslateActivity(String text);
+        void sendToTranslateActivity(String wordTest, String word );
     }
     private List<Word> wordList;
     private Context context;
     LayoutInflater inflater;
     private String wordTest;
-    public boolean boolTest;
     private TranslateText translateText;
-    private MutableLiveData<String> liveDataResultTranslate = new MutableLiveData<>();
+    private MutableLiveData<Integer> integerMutableLiveData = new MutableLiveData<>();
     public ViewPagerItemMeanReview(Context context) {
         this.wordList = new ArrayList<>();
         this.context = context;
@@ -62,7 +61,7 @@ public class ViewPagerItemMeanReview extends PagerAdapter implements ResultTrans
 
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-        liveDataResultTranslate.setValue("");
+
         return view == (ConstraintLayout) object;
     }
 
@@ -81,23 +80,17 @@ public class ViewPagerItemMeanReview extends PagerAdapter implements ResultTrans
         btnGuess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                wordTest = String.valueOf(editMean.getText());
-                translateText.sendToTranslateActivity(wordTest);
+                wordTest = String.valueOf(editMean.getText()).trim();
+                translateText.sendToTranslateActivity(wordTest, wordList.get(position).getWord());
+                txtResult.setText(wordTest);
+                editMean.setText("");
             }
         });
 
-        liveDataResultTranslate.observe((LifecycleOwner) context, new Observer<String>() {
+        integerMutableLiveData.observe((LifecycleOwner) context, new Observer<Integer>() {
             @Override
-            public void onChanged(String s) {
-                if (s.trim().equals(wordTest)){
-                    txtResult.setTextColor(0xFF0BF415);
-                   boolTest = true;
-                }
-                else{
-                    txtResult.setTextColor(0xFFFF1D0D);
-                    boolTest = false;
-                }
-                txtResult.setText(s);
+            public void onChanged(Integer integer) {
+                txtResult.setTextColor(integer);
             }
         });
         container.addView(view);
@@ -110,10 +103,8 @@ public class ViewPagerItemMeanReview extends PagerAdapter implements ResultTrans
         container.removeView((ConstraintLayout) object);
     }
     @Override
-    public void resultTranslate(String textResult) {
-        if (!textResult.equals("")){
-            liveDataResultTranslate.postValue(textResult);
-        }
+    public void resultTranslate(int color ) {
+       integerMutableLiveData.postValue(color);
     }
 
 

@@ -8,5 +8,9 @@
     <color name="colorPrimaryDarkBackgroud">#6A4C8F</color>
     <color name="colorAccentBackgroud">#645698</color>
     <color name="black_overlayBackgroud">#E6A8A1</color>
-    <color name="background_addWord">#D6CAE4</color>
+    <color name="background_addWord">#F6F5F8</color>
+    <color name="backgroud">#fff</color>
+    <color name="stroke">#000</color>
+    <color name="color_word">#3A0C8A</color>
+    <color name="color_hint">#97A0ED</color>
 </resources>

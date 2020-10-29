@@ -3,11 +3,13 @@
 
     <gradient
         android:angle="45"
-        android:startColor="@color/black_overlayBackgroud"
-        android:endColor="@color/colorPrimaryBackgroud"
-        android:centerColor="@color/colorAccentBackgroud"
+        android:startColor="@color/backgroud"
+        android:endColor="@color/backgroud"
         android:type="linear" />
     <size android:height="20dp"
         android:width="100dp" />
     <corners android:radius="10dp"/>
+    <!--<stroke
+        android:width="@dimen/_1sdp"
+        android:color="@color/stroke"/>-->
 </shape>

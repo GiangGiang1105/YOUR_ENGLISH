@@ -10,14 +10,12 @@ import java.util.List;
 public class TranslateViewModel extends ViewModel  {
     public MutableLiveData<String> resultTranslate;
     private Translate translate;
-    private MutableLiveData<List<Detail>> resultTranslateDefinition;
     public TranslateViewModel() {
     }
     public void init(){
         try{
             translate = new Translate();
             resultTranslate = new MutableLiveData<>();
-            resultTranslateDefinition  = new MutableLiveData<>();
         }
         catch (Exception e){
             e.printStackTrace();

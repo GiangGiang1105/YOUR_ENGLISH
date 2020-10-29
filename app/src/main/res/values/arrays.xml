@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="settings_list_language">
+        <item>@string/lang_viet</item>
+        <item>@string/lang_eng</item>
+        <item>@string/lang_fr</item>
+        <item>@string/lang_ko</item>
+        <item>@string/lang_ja</item>
+    </string-array>
+    <string-array name="settings_list_language_value">
+        <item>vi</item>
+        <item>en</item>
+        <item>fr</item>
+        <item>ko</item>
+        <item>ja</item>
+    </string-array>
+</resources>

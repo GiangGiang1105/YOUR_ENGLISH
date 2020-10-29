@@ -13,7 +13,7 @@ import android.widget.Button;
 import com.example.ey_application.R;
 import com.example.ey_application.activity.AddWord;
 import com.example.ey_application.activity.Dictionary;
-import com.example.ey_application.activity.TestActivity;
+import com.example.ey_application.activity.ReviewActivity;
 
 
 /**
@@ -84,7 +84,7 @@ public class HomeFragment extends Fragment {
         btnReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), TestActivity.class);
+                Intent intent = new Intent(getActivity(), ReviewActivity.class);
                 startActivity(intent);
             }
         });

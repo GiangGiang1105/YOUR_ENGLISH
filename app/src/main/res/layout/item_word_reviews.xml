@@ -22,7 +22,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/calibril"
-            android:text="TextView"
             android:textColor="#3A0C8A"
             android:textSize="@dimen/_18sdp" />
 

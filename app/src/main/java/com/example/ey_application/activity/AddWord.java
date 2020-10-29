@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -41,7 +42,7 @@ public class AddWord extends AppCompatActivity  implements  ResultCallBackWord {
     private List<Word> listWord;
     private ListAdapterWord listAdapterWord;
     private RecyclerView mRecyclerView ;
-    private  Button btnAddWord;
+    private ImageButton btnAddWord;
     private Button btnRemoveTo;
     private Button btnDeleteAll;
     private Button btnMarkAll;
@@ -55,7 +56,7 @@ public class AddWord extends AppCompatActivity  implements  ResultCallBackWord {
         setContentView(R.layout.activity_add_word);
         getView();
         toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Your new word");
+        toolbar.setTitle(getString(R.string.title_add_word));
         toolbar.setNavigationIcon(R.drawable.keyboard_backspace);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,10 +83,9 @@ public class AddWord extends AppCompatActivity  implements  ResultCallBackWord {
     private void getView() {
 
         editWord = (EditText) findViewById(R.id.edit_word);
-        btnAddWord = (Button) findViewById(R.id.btn_note);
+        btnAddWord = (ImageButton) findViewById(R.id.btn_note);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycleView);
         btnRemoveTo = (Button) findViewById(R.id.removeTo);
-        btnCancel = (Button) findViewById(R.id.cancelAll);
         btnDeleteAll = (Button) findViewById(R.id.deleteAll);
         btnMarkAll = (Button) findViewById(R.id.markAll);
 
@@ -105,16 +105,19 @@ public class AddWord extends AppCompatActivity  implements  ResultCallBackWord {
         btnMarkAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listAdapterWord.markAll();
+                if (btnMarkAll.getText().equals(getString(R.string.mark_all))){
+                    listAdapterWord.markAll();
+                    btnMarkAll.setText(getString(R.string.cancel));
+                }
+                else{
+                    listAdapterWord.cancel();
+                    btnMarkAll.setText(getString(R.string.mark_all));
+                }
+
 
             }
         });
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listAdapterWord.cancel();
-            }
-        });
+
 
         btnAddWord.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,7 +151,7 @@ public class AddWord extends AppCompatActivity  implements  ResultCallBackWord {
     private void insertWord() {
         String aWord = editWord.getText().toString().trim();
         if (TextUtils.isEmpty(aWord)) {
-            Toast.makeText(this, "Please input word you need save!", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.message_save_word), Toast.LENGTH_LONG).show();
         } else {
             for (Word word : listWord) {
                 if (aWord.equals(word.getWord())) {
@@ -176,8 +179,8 @@ public class AddWord extends AppCompatActivity  implements  ResultCallBackWord {
     }
     private void createDialogAddAllToReviewsList(){
         AlertDialog.Builder alBuilder = new AlertDialog.Builder(this);
-        alBuilder.setMessage("Do you want to add all the selected words to the checklist?");
-        alBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        alBuilder.setMessage(getString(R.string.question_add_all));
+        alBuilder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 List<Integer> listId = new ArrayList<>();
@@ -186,11 +189,10 @@ public class AddWord extends AppCompatActivity  implements  ResultCallBackWord {
                     listId.add(listWord.get(i).getId());
                     listStringWord.add(listWord.get(i).getWord());
                 }
-                wordViewModel.markAllWord(id_user, listId);
-                wordViewModel.insertAllWord(id_user, listStringWord);
+                wordViewModel.insertAllWord(id_user, listStringWord, listId);
             }
         });
-        alBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        alBuilder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 wordViewModel.getListWord(id_user);
@@ -202,8 +204,8 @@ public class AddWord extends AppCompatActivity  implements  ResultCallBackWord {
     }
     private void createDialogDeleteAll(){
         AlertDialog.Builder alBuilder = new AlertDialog.Builder(this);
-        alBuilder.setMessage("Do you want to delete all selected words?");
-        alBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        alBuilder.setMessage(getString(R.string.question_delete_all));
+        alBuilder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 List<Integer> listId = new ArrayList<>();
@@ -213,7 +215,7 @@ public class AddWord extends AppCompatActivity  implements  ResultCallBackWord {
                 wordViewModel.deleteAllWord(id_user, listId);
             }
         });
-        alBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+        alBuilder.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 wordViewModel.getListWord(id_user);
@@ -227,7 +229,7 @@ public class AddWord extends AppCompatActivity  implements  ResultCallBackWord {
     @Override
     public void onDeleteResultFail(boolean bool) {
         if (bool){
-            Toast.makeText(getApplicationContext(), "Server Error!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.server_error), Toast.LENGTH_LONG).show();
         }
 
     }
@@ -235,34 +237,34 @@ public class AddWord extends AppCompatActivity  implements  ResultCallBackWord {
     @Override
     public void onMarkResultFail(boolean bool) {
         if (bool){
-            Toast.makeText(getApplicationContext(), "Server Error!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),  getString(R.string.server_error), Toast.LENGTH_LONG).show();
         }
     }
 
     @Override
     public void onInsertResultFail(boolean bool) {
         if (bool){
-            Toast.makeText(getApplicationContext(), "Server Error!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),  getString(R.string.server_error), Toast.LENGTH_LONG).show();
         }
     }
 
     @Override
     public void onInsertReviewsResult(boolean bool) {
         if (bool){
-            Toast.makeText(getApplicationContext(), "You added a word to you review list!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.message_add_review), Toast.LENGTH_LONG).show();
         }
         else{
-            Toast.makeText(getApplicationContext(), "Server Error!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.server_error), Toast.LENGTH_LONG).show();
         }
     }
 
     @Override
     public void onDeleteReviewsResult(boolean bool) {
         if (bool){
-            Toast.makeText(getApplicationContext(), "You was remove a word from your review list!  ", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.message_remove_review), Toast.LENGTH_LONG).show();
         }
         else{
-            Toast.makeText(getApplicationContext(), "Server Error!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.server_error), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -274,21 +276,21 @@ public class AddWord extends AppCompatActivity  implements  ResultCallBackWord {
     @Override
     public void onInsertAllReviewsResult(boolean bool) {
         if (bool){
-            Toast.makeText(getApplicationContext(), "You was add all words to list reviews word", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.message_add_all_word_review), Toast.LENGTH_LONG).show();
             listAdapterWord.listPosition.clear();
         }
         else{
-            Toast.makeText(getApplicationContext(), "Server Error!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.server_error), Toast.LENGTH_LONG).show();
         }
     }
 
     @Override
     public void onDeleteAllWord(boolean bool) {
         if (bool){
-            Toast.makeText(getApplicationContext(), "You was delete all words", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.message_delete_all_word), Toast.LENGTH_LONG).show();
         }
         else{
-            Toast.makeText(getApplicationContext(), "Server Error!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), getString(R.string.server_error), Toast.LENGTH_LONG).show();
         }
     }
 }

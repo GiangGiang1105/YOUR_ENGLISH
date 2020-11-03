@@ -9,6 +9,7 @@ public class Volumn {
     private TextToSpeech textToSpeechUK;
     private TextToSpeech textToSpeechUS;
     private TextToSpeech textToSpeechENGLISH;
+    private TextToSpeech textToSpeechVN;
     private Context context;
     public Volumn(Context context) {
         this.context = context;
@@ -42,6 +43,18 @@ public class Volumn {
             public void onInit(int status) {
                 if(status != TextToSpeech.ERROR) {
                     textToSpeechUS.setLanguage(Locale.US);
+                }
+            }
+        });
+
+        return textToSpeechUS;
+    }
+    public TextToSpeech textToSpeechVN(){
+        textToSpeechUS = new TextToSpeech(context, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                if(status != TextToSpeech.ERROR) {
+                    textToSpeechUS.setLanguage(Locale.ROOT);
                 }
             }
         });

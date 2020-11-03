@@ -40,7 +40,7 @@
         android:id="@+id/btn_next"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:background="@drawable/bg_btn_add"
+        android:background="@color/colorPrimaryDark"
         android:text="@string/btn_next"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"

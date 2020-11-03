@@ -90,4 +90,9 @@
     <string name = "choose_add_word"> Ajouter un mot </string>
     <string name = "choose_exit"> Quitter </string>
     <string name = "message_delete_review"> Vous avez supprimé toutes les critiques de mots! </string>
+    <string name = "exit_process"> Êtes-vous sûr de vouloir quitter? \ n Tous les processus seront perdus. </string>
+    <string name = "title_translate"> Traduire </string>
+    <string name = "name_btn_translate1"> Anglais-vietnamien </string>
+    <string name = "name_btn_translate2"> Vietnamien-anglais </string>
+    <string name = "hint_input_translate"> Saisissez le texte à traduire </string>
 </resources>

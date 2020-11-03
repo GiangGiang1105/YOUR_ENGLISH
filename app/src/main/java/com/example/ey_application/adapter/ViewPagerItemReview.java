@@ -47,7 +47,8 @@ public class ViewPagerItemReview extends PagerAdapter implements ResultRecognize
     public ViewPagerItemReview(Context context) {
         this.wordList = new ArrayList<>();
         this.context = context;
-        this.volumn = new Volumn(context);
+        volumn = new Volumn(context);
+        textToSpeech = volumn.textToSpeechUS();
         callRecognize = (CallRecognize) context;
     }
     public void setData(List<Word> list){
@@ -91,7 +92,6 @@ public class ViewPagerItemReview extends PagerAdapter implements ResultRecognize
         btnVolumn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                textToSpeech = volumn.textToSpeechUS();
                 textToSpeech.speak(wordList.get(position).getWord(), TextToSpeech.QUEUE_FLUSH, null);
 
             }

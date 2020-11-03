@@ -182,26 +182,6 @@ public class WordRepository {
             }
         });
     }
-    public void markAllWord(int idUser, List<Integer> listId){
-        for (int i : listId){
-            getForWord.markWord(i, 1).enqueue(new Callback<MessageFromServer>() {
-                @Override
-                public void onResponse(Call<MessageFromServer> call, Response<MessageFromServer> response) {
-                    if (response.isSuccessful()){
-                       if (response.body().getStatus() == 0){
-                           Log.i("success", "successs");
-                       }
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<MessageFromServer> call, Throwable t) {
-                    Log.d(TAG, "onFailure:markWord" + t.getMessage());
-                }
-            });
-        }
-
-    }
     public void insertAllWord(final int idUser, List<String> list,  List<Integer> listId){
         final int[] i = {0};
         for (int j = 0; j < list.size(); j++){
@@ -234,7 +214,27 @@ public class WordRepository {
             callback.onInsertAllReviewsResult(false, idUser);
         }
     }
-    public void deleteAllWord(final int idUser, List<Integer> listId){
+    /*public void markAllWord(int idUser, List<Integer> listId){
+        for (int i : listId){
+            getForWord.markWord(i, 1).enqueue(new Callback<MessageFromServer>() {
+                @Override
+                public void onResponse(Call<MessageFromServer> call, Response<MessageFromServer> response) {
+                    if (response.isSuccessful()){
+                        if (response.body().getStatus() == 0){
+                            Log.i("success", "successs");
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<MessageFromServer> call, Throwable t) {
+                    Log.d(TAG, "onFailure:markWord" + t.getMessage());
+                }
+            });
+        }
+
+    }
+*/    public void deleteAllWord(final int idUser, List<Integer> listId){
         final int[] i = {0};
         for (int id : listId){
             getForWord.deleteWord(id, idUser).enqueue(new Callback<MessageFromServer>() {

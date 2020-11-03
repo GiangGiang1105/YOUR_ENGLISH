@@ -1,6 +1,5 @@
 package com.example.ey_application.activity;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -9,21 +8,13 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
-
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.ey_application.Model.Word.Word;
@@ -55,6 +46,16 @@ public class Dictionary extends AppCompatActivity {
         setContentView(R.layout.activity_dictionary);
         toolbar = (Toolbar) findViewById(R.id.toolbar3);
         setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.keyboard_backspace);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                // Your code
+                finish();
+            }
+        });
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         wordViewModel = ViewModelProviders.of(Dictionary.this).get(WordViewModel.class);
         sessionUser = new SessionUser(getApplicationContext());
@@ -121,48 +122,6 @@ public class Dictionary extends AppCompatActivity {
 
         return super.onCreateOptionsMenu(menu);
     }
-
-    /*private void createDialogAddToReviewsList(final WordDictionary wordDictionary){
-        AlertDialog.Builder alBuilder = new AlertDialog.Builder(this);
-        alBuilder.setMessage("Do you want add this word to your reviews list word?");
-        alBuilder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                databaseAccess.markWord(wordDictionary.getId(), 1);
-                wordViewModel.insertWordReviews(id_user, wordDictionary.getWord());
-            }
-        });
-        alBuilder.setNegativeButton(getString(R.), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-        AlertDialog alertDialog = alBuilder.create();
-        alertDialog.show();
-    }
-    private void createDialogDeleteRemoveReviewsList(final WordDictionary wordDictionary){
-        AlertDialog.Builder alBuilder = new AlertDialog.Builder(this);
-        alBuilder.setMessage("Do you want remove this word from your reviews list word? ");
-        alBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                databaseAccess.markWord(wordDictionary.getId(), 0);
-                wordViewModel.deleteWordReviews(id_user, wordDictionary.getWord());
-            }
-        });
-        alBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-        AlertDialog alertDialog = alBuilder.create();
-        alertDialog.show();
-
-    }
-
-*/
 
 
 }

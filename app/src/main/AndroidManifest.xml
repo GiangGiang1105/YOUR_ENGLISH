@@ -13,9 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.GeneralSetting"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:parentActivityName=".activity.MainActivity"></activity>
+        <activity android:name=".activity.TranslateActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity
+            android:name=".activity.GeneralSetting"
+            android:parentActivityName=".activity.MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".activity.ScoreActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />

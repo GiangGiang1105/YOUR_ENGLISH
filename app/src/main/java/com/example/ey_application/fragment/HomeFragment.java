@@ -1,19 +1,23 @@
 package com.example.ey_application.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.test.espresso.remote.EspressoRemoteMessage;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.ey_application.R;
 import com.example.ey_application.activity.AddWord;
 import com.example.ey_application.activity.Dictionary;
 import com.example.ey_application.activity.ReviewActivity;
+import com.example.ey_application.activity.TranslateActivity;
 
 
 /**
@@ -31,6 +35,7 @@ public class HomeFragment extends Fragment {
     private Button addWord;
     private Button btnReview;
     private Button btnDictionary;
+    private Button btnTranslate;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -66,6 +71,7 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    @SuppressLint("WrongViewCast")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -74,6 +80,7 @@ public class HomeFragment extends Fragment {
         addWord = (Button) view.findViewById(R.id.add_word);
         btnReview = (Button) view.findViewById(R.id.review);
         btnDictionary = (Button) view.findViewById(R.id.dictionary);
+        btnTranslate = (Button) view.findViewById(R.id.btn_translate);
         addWord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,6 +100,14 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), Dictionary.class);
                 startActivity(intent);
+            }
+        });
+        btnTranslate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), TranslateActivity.class);
+                startActivity(intent);
+                Toast.makeText(getContext(), "hihi", Toast.LENGTH_LONG).show();
             }
         });
 

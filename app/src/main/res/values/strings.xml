@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">EY_APPLICATION</string>
 
-//NavigationView and activity main
+    //NavigationView and activity main
     <string name="menu_home">Home</string>
     <string name="menu_new_word">Your new word</string>
     <string name="menu_review">Review</string>
@@ -90,4 +90,9 @@
     <string name="choose_add_word">Add word</string>
     <string name="choose_exit">Exit</string>
     <string name="message_delete_review">You deleted all word reviews!</string>
+    <string name="exit_process"> Are you sure you want to exit? \ n All processes will be lost. </string>
+    <string name="title_translate">Translate</string>
+    <string name="name_btn_translate1">English-Vietnamese</string>
+    <string name="name_btn_translate2">Vietnamese-English</string>
+    <string name="hint_input_translate">Enter the text to be translated</string>
 </resources>

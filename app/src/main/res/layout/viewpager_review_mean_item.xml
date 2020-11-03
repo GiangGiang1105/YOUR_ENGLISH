@@ -28,12 +28,11 @@
         android:layout_height="@dimen/_40sdp"
         android:layout_marginLeft="@dimen/_20sdp"
         android:layout_marginRight="@dimen/_20sdp"
-        android:background="@drawable/background_edittext"
         android:fontFamily="@font/calibril"
         android:hint="@string/hint_input_mean"
         android:paddingLeft="@dimen/_10sdp"
-        android:textColor="#fff"
-        android:textColorHint="#fff"
+        android:textColor="#000"
+        android:textColorHint="#000"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.313"
@@ -44,39 +43,34 @@
 
     <LinearLayout
         android:id="@+id/linearLayout4"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_20sdp"
+        android:layout_marginBottom="28dp"
         android:weightSum="2"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-        <Button
+        <ImageButton
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:id="@+id/btn_guess"
-            android:layout_width="@dimen/_130sdp"
-            android:layout_height="@dimen/_40sdp"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_35sdp"
             android:layout_marginLeft="@dimen/_20sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:layout_weight="1"
-            android:background="@drawable/bg_btn_add"
-            android:text="Guess"
-            android:textAllCaps="false"
-            android:textColor="#fff"
-            android:textSize="22dp"
+            android:src="@drawable/check"
             tools:ignore="MissingConstraints" />
 
-        <Button
+        <ImageButton
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:id="@+id/btn_test"
-            android:layout_width="@dimen/_130sdp"
-            android:layout_height="@dimen/_40sdp"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_35sdp"
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_20sdp"
             android:layout_weight="1"
-            android:background="@drawable/bg_btn_add"
-            android:text="Show Result"
-            android:textAllCaps="false"
-            android:textColor="#fff"
-            android:textSize="22dp" />
+            android:src="@drawable/eye" />
 
     </LinearLayout>
 
@@ -87,6 +81,7 @@
         android:layout_marginTop="36dp"
         android:gravity="center_horizontal"
         android:textAlignment="center"
+        android:textSize="22dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"

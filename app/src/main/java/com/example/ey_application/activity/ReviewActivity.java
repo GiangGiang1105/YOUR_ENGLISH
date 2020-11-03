@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.ey_application.Model.Reviews.WordReviews;
@@ -39,6 +40,17 @@ public class ReviewActivity extends AppCompatActivity implements ResultCallBackW
         getView();
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setNavigationIcon(R.drawable.keyboard_backspace);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                // Your code
+                finish();
+            }
+        });
         wordViewModel = ViewModelProviders.of(this).get(WordViewModel.class);
         listWordReviewsAdapter = new ListWordReviewsAdapter(this);
         llm = new LinearLayoutManager(this);
@@ -63,6 +75,13 @@ public class ReviewActivity extends AppCompatActivity implements ResultCallBackW
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_review, menu);
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(ReviewActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 
     @Override

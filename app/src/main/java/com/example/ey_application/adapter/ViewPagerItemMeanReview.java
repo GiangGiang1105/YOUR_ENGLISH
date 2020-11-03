@@ -36,7 +36,7 @@ import java.util.List;
 public class ViewPagerItemMeanReview extends PagerAdapter implements ResultTranslate {
 
     public interface TranslateText{
-        void sendToTranslateActivity(String wordTest, String word );
+        void sendToTranslateActivity(String wordTest, String word , String type);
     }
     private List<Word> wordList;
     private Context context;
@@ -44,6 +44,7 @@ public class ViewPagerItemMeanReview extends PagerAdapter implements ResultTrans
     private String wordTest;
     private TranslateText translateText;
     private MutableLiveData<Integer> integerMutableLiveData = new MutableLiveData<>();
+    private MutableLiveData<String> resultMutableLiveData = new MutableLiveData<>();
     public ViewPagerItemMeanReview(Context context) {
         this.wordList = new ArrayList<>();
         this.context = context;
@@ -72,8 +73,8 @@ public class ViewPagerItemMeanReview extends PagerAdapter implements ResultTrans
         View view = inflater.inflate(R.layout.viewpager_review_mean_item,container,false);
         TextView txtWord = (TextView) view.findViewById(R.id.word);
         final EditText editMean = (EditText) view.findViewById(R.id.edit_text_word);
-        Button btnResult = (Button) view.findViewById(R.id.btn_test);
-        Button btnGuess = (Button) view.findViewById(R.id.btn_guess);
+       ImageButton btnResult = (ImageButton) view.findViewById(R.id.btn_test);
+      final ImageButton btnGuess = (ImageButton) view.findViewById(R.id.btn_guess);
         final TextView txtResult = (TextView) view.findViewById(R.id.textmean);
         txtWord.setText(wordList.get(position).getWord());
 
@@ -81,16 +82,28 @@ public class ViewPagerItemMeanReview extends PagerAdapter implements ResultTrans
             @Override
             public void onClick(View v) {
                 wordTest = String.valueOf(editMean.getText()).trim();
-                translateText.sendToTranslateActivity(wordTest, wordList.get(position).getWord());
+                translateText.sendToTranslateActivity(wordTest, wordList.get(position).getWord(), "test");
                 txtResult.setText(wordTest);
                 editMean.setText("");
             }
         });
+      btnResult.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+              translateText.sendToTranslateActivity(wordTest, wordList.get(position).getWord(), "show");
+          }
+      });
 
         integerMutableLiveData.observe((LifecycleOwner) context, new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
                 txtResult.setTextColor(integer);
+            }
+        });
+        resultMutableLiveData.observe((LifecycleOwner) context, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                txtResult.setText(s);
             }
         });
         container.addView(view);
@@ -107,6 +120,10 @@ public class ViewPagerItemMeanReview extends PagerAdapter implements ResultTrans
        integerMutableLiveData.postValue(color);
     }
 
+    @Override
+    public void resultTranslate(String word) {
+        resultMutableLiveData.postValue(word);
+    }
 
 
 }

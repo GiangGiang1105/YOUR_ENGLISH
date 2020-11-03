@@ -44,7 +44,7 @@
                 android:layout_height="50dp"
                 android:layout_gravity="left"
                 android:layout_marginRight="20dp"
-                android:background="@drawable/background_volume_micro"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:src="@drawable/volume" />
 
             <ImageButton
@@ -53,7 +53,7 @@
                 android:layout_height="50dp"
                 android:layout_gravity="right"
                 android:layout_marginLeft="20dp"
-                android:background="@drawable/background_volume_micro"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:src="@drawable/microphone_outline" />
         </LinearLayout>
 

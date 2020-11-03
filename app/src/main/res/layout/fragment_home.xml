@@ -37,7 +37,7 @@
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:background="@drawable/background_main1"
                 android:fontFamily="@font/calibril"
-                android:text="@string/btn_test"
+                android:text="@string/title_test"
                 android:textAllCaps="false"
                 android:textColor="#fff"
                 android:textSize="@dimen/_18sdp" />
@@ -62,14 +62,17 @@
                 android:textSize="@dimen/_18sdp" />
 
             <Button
+                android:id="@+id/btn_translate"
                 style="@style/Widget.AppCompat.Button"
                 android:layout_width="@dimen/_135sdp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="@dimen/_5sdp"
                 android:background="@drawable/background_main3"
                 android:fontFamily="@font/calibril"
+                android:text="@string/title_translate"
                 android:textAllCaps="false"
-                android:textColor="#fff" />
+                android:textColor="#fff"
+                android:textSize="@dimen/_18sdp"  />
 
         </LinearLayout>
     </LinearLayout>

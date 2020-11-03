@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.ey_application.activity.TranslateActivity">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:background="@color/colorPrimaryDark"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:titleTextAppearance="@style/CalibrilColorTextAppearance"
+        app:title="@string/title_translate"
+        />
+
+    <EditText
+        android:id="@+id/textArea_information"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:background="@drawable/backgroud_edit"
+        android:fontFamily="@font/calibril"
+        android:gravity="top|left"
+        android:hint="@string/hint_input_translate"
+        android:inputType="textMultiLine"
+        android:lines="6"
+        android:overScrollMode="always"
+        android:paddingLeft="@dimen/_5sdp"
+        android:paddingTop="@dimen/_5sdp"
+        android:paddingRight="@dimen/_30sdp"
+        android:scrollbarStyle="insideInset"
+        android:scrollbars="vertical"
+        android:scrollHorizontally="false"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.64"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <ImageButton
+        android:id="@+id/btn_micro"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:tag="micro"
+        app:layout_constraintBottom_toBottomOf="@+id/textArea_information"
+        app:layout_constraintEnd_toEndOf="@+id/textArea_information"
+        app:layout_constraintTop_toTopOf="@+id/textArea_information"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/microphone" />
+
+    <TextView
+        android:id="@+id/mean_translate"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginTop="68dp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:paddingTop="@dimen/_5sdp"
+        android:paddingLeft="@dimen/_5sdp"
+        android:paddingRight="@dimen/_30sdp"
+        android:background="@drawable/backgroud_edit"
+        android:fontFamily="@font/calibril"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textArea_information" />
+
+    <ImageButton
+        android:id="@+id/volumn1"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/mean_translate"
+        app:layout_constraintEnd_toEndOf="@+id/mean_translate"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_copy"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/volume1" />
+
+    <ImageButton
+        android:id="@+id/volumn2"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textArea_information"
+        app:layout_constraintEnd_toEndOf="@+id/textArea_information"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/textArea_information"
+        app:layout_constraintTop_toBottomOf="@+id/btn_micro"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/volume1" />
+
+    <ImageButton
+        android:id="@+id/btn_copy"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_45sdp"
+        app:layout_constraintEnd_toEndOf="@+id/mean_translate"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/mean_translate"
+        app:layout_constraintTop_toTopOf="@+id/mean_translate"
+        app:srcCompat="@drawable/content_copy" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_10sdp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/mean_translate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textArea_information"
+        app:layout_constraintVertical_bias="1.0">
+
+        <Button
+            android:id="@+id/btn_translate1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:textAllCaps="false"
+            android:fontFamily="@font/calibril"
+            android:text="@string/name_btn_translate1" />
+
+        <Button
+            android:id="@+id/btn_translate2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_weight="1"
+            android:textAllCaps="false"
+            android:fontFamily="@font/calibril"
+            android:text="@string/name_btn_translate2" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

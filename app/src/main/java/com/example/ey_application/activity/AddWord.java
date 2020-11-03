@@ -46,7 +46,6 @@ public class AddWord extends AppCompatActivity  implements  ResultCallBackWord {
     private Button btnRemoveTo;
     private Button btnDeleteAll;
     private Button btnMarkAll;
-    private Button btnCancel;
     private LinearLayoutManager llm;
     SessionUser sessionUser;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

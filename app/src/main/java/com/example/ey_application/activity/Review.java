@@ -15,6 +15,7 @@ import android.speech.RecognizerIntent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -49,6 +50,7 @@ public class Review extends AppCompatActivity implements ViewPagerItemDetail.Cha
     private ProgressBar progressTest;
     private Switch mSwitch;
     private TextView scoreView;
+    private ImageButton btnExit;
     private List<Word> wordList;
     private List<DataViewPager> dataViewPagerList =  new ArrayList<>();
     WordViewModel wordViewModel;
@@ -148,9 +150,36 @@ public class Review extends AppCompatActivity implements ViewPagerItemDetail.Cha
                 }
             }
         });
+        btnExit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createDialogExitProcess();
+            }
+        });
 
     }
+    private void createDialogExitProcess(){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage(getString(R.string.exit_process));
+        alertDialogBuilder.setPositiveButton(getString(R.string.yes),
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface arg0, int arg1) {
+                       Intent intent = new Intent(Review.this, ReviewActivity.class);
+                       startActivity(intent);
+                    }
+                });
 
+        alertDialogBuilder.setNegativeButton(getString(R.string.no),new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
 
     private void setDialog(){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -215,6 +244,7 @@ public class Review extends AppCompatActivity implements ViewPagerItemDetail.Cha
         scoreView = findViewById(R.id.score);
         scoreView.setText(String.valueOf(scoreTest));
         progressTest = findViewById(R.id.progressTest);
+        btnExit = findViewById(R.id.exit);
     }
 
     @Override
@@ -263,19 +293,24 @@ public class Review extends AppCompatActivity implements ViewPagerItemDetail.Cha
     }
 
     @Override
-    public void sendToTranslateActivity(final String wordTest, String word ) {
+    public void sendToTranslateActivity(final String wordTest, String word, final String type ) {
         mSwitch.setEnabled(true);
         translateViewModel.translate(word).observe(this, new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                if (wordTest.toLowerCase().trim().equals(s.toLowerCase().trim())){
-                    resultTranslate.resultTranslate(0xFF0BF415);
-                    score.setTruth(score.getTruth() +1);
+                if (type.equals("test")){
+                    if (wordTest.toLowerCase().trim().equals(s.toLowerCase().trim())){
+                        resultTranslate.resultTranslate(0xFF0BF415);
+                        score.setTruth(score.getTruth() +1);
+                    }
+                    else{
+                        score.setFail(score.getFail() + 1);
+                        resultTranslate.resultTranslate(0xFFFF1D0D);
+                    }
+                }else{
+                    resultTranslate.resultTranslate(s);
                 }
-                else{
-                    score.setFail(score.getFail() + 1);
-                    resultTranslate.resultTranslate(0xFFFF1D0D);
-                }
+
             }
         });
     }

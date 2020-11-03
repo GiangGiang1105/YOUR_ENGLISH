@@ -49,9 +49,9 @@ public class WordViewModel extends ViewModel implements ResultCallback {
         wordReponsitory.deleteListWordReviews(id_user);
         wordReponsitory.unMarkWord(id_user);
     }
-    public void markAllWord(int idUser, List<Integer> listId){
+   /* public void markAllWord(int idUser, List<Integer> listId){
         wordReponsitory.markAllWord(idUser, listId);
-    }
+    }*/
     public void getListWordReviews(int id_user){
         wordReponsitory.getListWordReviews(id_user);
     }

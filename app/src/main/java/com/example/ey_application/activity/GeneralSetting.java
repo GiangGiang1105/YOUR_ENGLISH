@@ -3,12 +3,13 @@ package com.example.ey_application.activity;
 import androidx.annotation.RequiresApi;
 
 
-import android.app.Application;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
+import androidx.appcompat.widget.Toolbar;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,15 +21,24 @@ import com.example.ey_application.utils.LocaleHelper;
 
 
 public class GeneralSetting extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener{
-    private SharedPreferences preferences;
-    private String lang;
+    private Toolbar toolbar;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_general_setting);
-        setupSharedPreferences();
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setNavigationIcon(R.drawable.keyboard_backspace);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View view) {
+
+                // Your code
+                finish();
+            }
+        });
+        setupSharedPreferences();
     }
     private void setupSharedPreferences() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);

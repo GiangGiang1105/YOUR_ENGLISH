@@ -33,8 +33,7 @@ public class GeneralSetting extends AppCompatActivity implements SharedPreferenc
 
             @Override
             public void onClick(View view) {
-
-                // Your code
+                intentBack();
                 finish();
             }
         });
@@ -60,6 +59,12 @@ public class GeneralSetting extends AppCompatActivity implements SharedPreferenc
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(i);
     }
+    void intentBack(){
+        Intent i = new Intent(GeneralSetting.this, MainActivity.class);
+        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -70,9 +75,6 @@ public class GeneralSetting extends AppCompatActivity implements SharedPreferenc
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Intent i = new Intent(GeneralSetting.this, MainActivity.class);
-        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(i);
+        intentBack();
     }
 }

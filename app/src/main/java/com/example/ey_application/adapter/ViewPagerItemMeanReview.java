@@ -73,8 +73,8 @@ public class ViewPagerItemMeanReview extends PagerAdapter implements ResultTrans
         View view = inflater.inflate(R.layout.viewpager_review_mean_item,container,false);
         TextView txtWord = (TextView) view.findViewById(R.id.word);
         final EditText editMean = (EditText) view.findViewById(R.id.edit_text_word);
-       ImageButton btnResult = (ImageButton) view.findViewById(R.id.btn_test);
-      final ImageButton btnGuess = (ImageButton) view.findViewById(R.id.btn_guess);
+        Button btnResult = (Button) view.findViewById(R.id.btn_test);
+        final Button btnGuess = (Button) view.findViewById(R.id.btn_guess);
         final TextView txtResult = (TextView) view.findViewById(R.id.textmean);
         txtWord.setText(wordList.get(position).getWord());
 

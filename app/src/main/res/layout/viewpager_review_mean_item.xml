@@ -51,7 +51,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <ImageButton
+        <Button
             style="@style/Widget.AppCompat.Button.Borderless"
             android:id="@+id/btn_guess"
             android:layout_width="@dimen/_70sdp"
@@ -59,18 +59,22 @@
             android:layout_marginLeft="@dimen/_20sdp"
             android:layout_marginRight="@dimen/_10sdp"
             android:layout_weight="1"
-            android:src="@drawable/check"
+            android:text="@string/btn_test"
+            android:textAllCaps="false"
+            android:drawableRight="@drawable/check"
             tools:ignore="MissingConstraints" />
 
-        <ImageButton
-            style="@style/Widget.AppCompat.Button.Borderless"
+        <Button
             android:id="@+id/btn_test"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="@dimen/_70sdp"
             android:layout_height="@dimen/_35sdp"
             android:layout_marginLeft="@dimen/_10sdp"
             android:layout_marginRight="@dimen/_20sdp"
             android:layout_weight="1"
-            android:src="@drawable/eye" />
+            android:drawableRight="@drawable/eye"
+            android:text="@string/btn_result"
+            android:textAllCaps="false" />
 
     </LinearLayout>
 

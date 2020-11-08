@@ -46,9 +46,8 @@ public class ReviewActivity extends AppCompatActivity implements ResultCallBackW
 
             @Override
             public void onClick(View view) {
-
-                // Your code
-                finish();
+                Intent intent = new Intent(ReviewActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
         wordViewModel = ViewModelProviders.of(this).get(WordViewModel.class);

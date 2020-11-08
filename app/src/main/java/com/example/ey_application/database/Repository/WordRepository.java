@@ -7,6 +7,7 @@ import android.widget.Toast;
 import com.example.ey_application.Model.MessageFromServer;
 import com.example.ey_application.Model.Reviews.Score;
 import com.example.ey_application.Model.Reviews.WordReviews;
+import com.example.ey_application.Model.Translate.HistoryTranslate;
 import com.example.ey_application.Model.Word.Word;
 import com.example.ey_application.database.API.GetForWord;
 import com.example.ey_application.database.RetrofitService;
@@ -296,6 +297,38 @@ public class WordRepository {
 
             @Override
             public void onFailure(Call<List<Score>> call, Throwable t) {
+                Log.i("unsucesss", t.getMessage());
+            }
+        });
+    }
+    public void createHistoryTranslate(final int idUser, String text, String mean){
+        getForWord.createHistoryTranslate(idUser, text, mean).enqueue(new Callback<MessageFromServer>() {
+            @Override
+            public void onResponse(Call<MessageFromServer> call, Response<MessageFromServer> response) {
+                if (response.isSuccessful()){
+                    if (response.body() != null){
+                        callback.onResultCreateHistoryTranslate(true, idUser);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MessageFromServer> call, Throwable t) {
+                Log.i("unsucesss", t.getMessage());
+            }
+        });
+    }
+    public void showHistoryTranslate(int idUser){
+        getForWord.showHistoryTranslate(idUser).enqueue(new Callback<List<HistoryTranslate>>() {
+            @Override
+            public void onResponse(Call<List<HistoryTranslate>> call, Response<List<HistoryTranslate>> response) {
+                if (response.isSuccessful()){
+                    callback.onShowHistoryTranslate(response.body());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<HistoryTranslate>> call, Throwable t) {
                 Log.i("unsucesss", t.getMessage());
             }
         });

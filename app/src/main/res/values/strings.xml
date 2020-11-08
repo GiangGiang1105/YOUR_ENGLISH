@@ -32,7 +32,7 @@
     <string name="btn_change_page">Register Now? </string>
     //activity test
     <string name="title_test">Review</string>
-    <string name="btn_search">Search</string>
+    <string name="btn_search">Detail</string>
     //actvity worddetail
     <string name="tab_eng">Eng Eng</string>
     <string name="tab_synonyms">Synonyms</string>
@@ -95,4 +95,5 @@
     <string name="name_btn_translate1">English-Vietnamese</string>
     <string name="name_btn_translate2">Vietnamese-English</string>
     <string name="hint_input_translate">Enter the text to be translated</string>
+    <string name="btn_result">Result</string>
 </resources>

@@ -51,8 +51,6 @@ public class Dictionary extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-
-                // Your code
                 finish();
             }
         });

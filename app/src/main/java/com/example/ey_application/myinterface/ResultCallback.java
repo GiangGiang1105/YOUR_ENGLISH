@@ -2,6 +2,7 @@ package com.example.ey_application.myinterface;
 
 import com.example.ey_application.Model.Reviews.Score;
 import com.example.ey_application.Model.Reviews.WordReviews;
+import com.example.ey_application.Model.Translate.HistoryTranslate;
 import com.example.ey_application.Model.Word.Word;
 
 import java.util.List;
@@ -19,5 +20,7 @@ public interface  ResultCallback {
     void onDeleteAllWord(boolean bool, int userId);
     void onShowCore(List<Score> scores);
     void onUpdateScore(boolean bool, int idUser, int kingofreview);
+    void onResultCreateHistoryTranslate(boolean bool, int idUser);
+    void onShowHistoryTranslate(List<HistoryTranslate> historyTranslates);
 
 }

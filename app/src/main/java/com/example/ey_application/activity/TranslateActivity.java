@@ -6,6 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -21,12 +24,19 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ey_application.Model.Translate.HistoryTranslate;
 import com.example.ey_application.R;
 import com.example.ey_application.ViewModel.TranslateViewModel;
+import com.example.ey_application.ViewModel.WordViewModel;
 import com.example.ey_application.Volumn;
+import com.example.ey_application.adapter.ListHistoryTranslateAdapter;
+import com.example.ey_application.session.SessionUser;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TranslateActivity extends AppCompatActivity {
     private static final int RECOGNIZE_RESULT = 1;
@@ -38,6 +48,7 @@ public class TranslateActivity extends AppCompatActivity {
     private ImageButton btnVolumnText;
     private ImageButton btnVolumnMean;
     private ImageButton btnCopy;
+    private RecyclerView recyclerView;
     private Toolbar toolbar;
     private String textTranslate = "";
     private String meanTranslate ="";
@@ -45,22 +56,33 @@ public class TranslateActivity extends AppCompatActivity {
     private TextToSpeech textToSpeechENGLISH;
     private TextToSpeech textToSpeechVN;
     private TranslateViewModel translateViewModel;
+    private WordViewModel wordViewModel;
+    private int idUser;
+    private SessionUser sessionUser;
+    private LinearLayoutManager llm;
+    private ListHistoryTranslateAdapter listHistoryTranslateAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_translate);
-        translateViewModel = ViewModelProviders.of(this).get(TranslateViewModel.class);
-        translateViewModel.init();
-        mVolumn = new Volumn(this);
-        textToSpeechENGLISH = mVolumn.setTextToSpeechEnglish();
-        textToSpeechVN = mVolumn.textToSpeechVN();
+        init();
         getView();
+        getIdUser();
         eventTranslate();
         coverTranslate();
         mvolumnMeanTranslate();
         mvolumnTextTranslate();
+        eventCopyText();
+        createListHistory();
     }
-
+    private void init(){
+        translateViewModel = ViewModelProviders.of(this).get(TranslateViewModel.class);
+        translateViewModel.init();
+        wordViewModel = ViewModelProviders.of(this).get(WordViewModel.class);
+        mVolumn = new Volumn(this);
+        textToSpeechENGLISH = mVolumn.setTextToSpeechEnglish();
+        textToSpeechVN = mVolumn.textToSpeechVN();
+    }
     private void getView(){
         inputTextTranslate = (EditText) findViewById(R.id.textArea_information);
         btnMicro = (ImageButton) findViewById(R.id.btn_micro);
@@ -70,15 +92,33 @@ public class TranslateActivity extends AppCompatActivity {
         btnCopy = (ImageButton) findViewById(R.id.btn_copy);
         btnTslAnhViet = (Button) findViewById(R.id.btn_translate1);
         btnTslVietAnh = (Button) findViewById(R.id.btn_translate2);
+        recyclerView = (RecyclerView) findViewById(R.id.recycler);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setNavigationIcon(R.drawable.keyboard_backspace);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
-
-                // Your code
                 finish();
+            }
+        });
+    }
+    private void createListHistory(){
+        llm = new LinearLayoutManager(this);
+        listHistoryTranslateAdapter = new ListHistoryTranslateAdapter(this);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(llm);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setNestedScrollingEnabled(false);
+        recyclerView.setAdapter(listHistoryTranslateAdapter);
+        setListHistoryTranslateAdapter();
+    }
+    private void setListHistoryTranslateAdapter(){
+        wordViewModel.showHistoryTranslate(idUser);
+        wordViewModel.listHistoryTranslate.observe(this, new Observer<List<HistoryTranslate>>() {
+            @Override
+            public void onChanged(List<HistoryTranslate> historyTranslates) {
+                listHistoryTranslateAdapter.setData(historyTranslates);
             }
         });
     }
@@ -138,6 +178,7 @@ public class TranslateActivity extends AppCompatActivity {
             public void onChanged(String s) {
                 meanTranslate = s;
                 txtMeanTranslate.setText(s);
+                saveHistoryTranslate();
             }
         });
     }
@@ -162,7 +203,27 @@ public class TranslateActivity extends AppCompatActivity {
             }
         });
     }
-    pri
+    private void eventCopyText(){
+        btnCopy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                copyText(meanTranslate);
+            }
+        });
+    }
+    private void copyText(String s){
+        ClipboardManager clipboardManager = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clipData = ClipData.newPlainText("text whatever you want", s);
+        clipboardManager.setPrimaryClip(clipData);
+    }
+    private void saveHistoryTranslate(){
+        wordViewModel.createHistoryTranslate(idUser, textTranslate, meanTranslate);
+    }
+    private void getIdUser(){
+        sessionUser = new SessionUser(getApplicationContext());
+        sessionUser.getPreferences();
+        idUser = sessionUser.getLoggedID();
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == RECOGNIZE_RESULT && resultCode == RESULT_OK){

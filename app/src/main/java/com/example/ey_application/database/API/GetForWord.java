@@ -3,6 +3,7 @@ package com.example.ey_application.database.API;
 import com.example.ey_application.Model.MessageFromServer;
 import com.example.ey_application.Model.Reviews.Score;
 import com.example.ey_application.Model.Reviews.WordReviews;
+import com.example.ey_application.Model.Translate.HistoryTranslate;
 import com.example.ey_application.Model.Word.Word;
 
 import java.util.List;
@@ -53,4 +54,9 @@ public interface GetForWord {
                                          @Field("kingofreview") int  kingofreview, @Field("truth") int truth, @Field("fail") int fail);
     @GET("showscore.php")
     Call<List<Score>> showScore(@Query("IdUser") int idUser, @Query("kingofreview") int kingofreview);
+    @FormUrlEncoded
+    @POST("historytranslate.php")
+    Call<MessageFromServer> createHistoryTranslate(@Field("Iduser") int idUser, @Field("text") String text, @Field("mean") String mean);
+    @GET("showhistorytranslate.php")
+    Call<List<HistoryTranslate>> showHistoryTranslate(@Query("Iduser") int idUser);
 }

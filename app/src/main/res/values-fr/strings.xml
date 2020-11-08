@@ -95,4 +95,5 @@
     <string name = "name_btn_translate1"> Anglais-vietnamien </string>
     <string name = "name_btn_translate2"> Vietnamien-anglais </string>
     <string name = "hint_input_translate"> Saisissez le texte à traduire </string>
+    <string name = "btn_result"> Résultat </string>
 </resources>

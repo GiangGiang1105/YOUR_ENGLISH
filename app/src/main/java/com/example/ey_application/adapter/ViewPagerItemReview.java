@@ -42,8 +42,6 @@ public class ViewPagerItemReview extends PagerAdapter implements ResultRecognize
     private CallRecognize callRecognize;
     private MutableLiveData<String> liveDataWordRegconize = new MutableLiveData<>();
     private MutableLiveData<Integer> liveDataWordColor = new MutableLiveData<>();
-    TextView txtWord;
-    ImageButton btnVolumn;
     public ViewPagerItemReview(Context context) {
         this.wordList = new ArrayList<>();
         this.context = context;
@@ -72,9 +70,9 @@ public class ViewPagerItemReview extends PagerAdapter implements ResultRecognize
     public Object instantiateItem(@NonNull ViewGroup container, final int position) {
         inflater = (LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.viewpager_review_item,container,false);
-        txtWord = (TextView) view.findViewById(R.id.word);
-        btnVolumn = (ImageButton) view.findViewById(R.id.volumn_word);
-        ImageButton btnRecognize = (ImageButton) view.findViewById(R.id.microphone_word);
+        TextView txtWord = (TextView) view.findViewById(R.id.word);
+        Button btnVolumn = (Button) view.findViewById(R.id.volumn_word);
+        Button btnRecognize = (Button) view.findViewById(R.id.microphone_word);
         final TextView txtRecognize = (TextView) view.findViewById(R.id.textRegconize);
         txtWord.setText(wordList.get(position).getWord());
         liveDataWordRegconize.observe((LifecycleOwner) context , new Observer<String>() {

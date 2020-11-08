@@ -51,6 +51,7 @@ public class Review extends AppCompatActivity implements ViewPagerItemDetail.Cha
     private Switch mSwitch;
     private TextView scoreView;
     private ImageButton btnExit;
+    private Button btnDetail;
     private List<Word> wordList;
     private List<DataViewPager> dataViewPagerList =  new ArrayList<>();
     WordViewModel wordViewModel;
@@ -245,6 +246,13 @@ public class Review extends AppCompatActivity implements ViewPagerItemDetail.Cha
         scoreView.setText(String.valueOf(scoreTest));
         progressTest = findViewById(R.id.progressTest);
         btnExit = findViewById(R.id.exit);
+        btnDetail = findViewById(R.id.search);
+        btnDetail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mSwitch.setEnabled(true);
+            }
+        });
     }
 
     @Override
@@ -270,6 +278,7 @@ public class Review extends AppCompatActivity implements ViewPagerItemDetail.Cha
     @Override
     public void callRecognize(String word ) {
         mSwitch.setEnabled(true);
+        mSwitch.setChecked(true);
         wordTest = word;
         Intent speachIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         speachIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
@@ -295,6 +304,7 @@ public class Review extends AppCompatActivity implements ViewPagerItemDetail.Cha
     @Override
     public void sendToTranslateActivity(final String wordTest, String word, final String type ) {
         mSwitch.setEnabled(true);
+        mSwitch.setChecked(true);
         translateViewModel.translate(word).observe(this, new Observer<String>() {
             @Override
             public void onChanged(String s) {

@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.ey_application.Model.Reviews.Score;
 import com.example.ey_application.Model.Reviews.WordReviews;
+import com.example.ey_application.Model.Translate.HistoryTranslate;
 import com.example.ey_application.Model.Word.Word;
 import com.example.ey_application.database.Repository.WordRepository;
 import com.example.ey_application.myinterface.ResultCallBackWord;
@@ -18,6 +19,7 @@ public class WordViewModel extends ViewModel implements ResultCallback {
     public MutableLiveData<List<Word>> listWord = new MutableLiveData<>();
     public MutableLiveData<List<Score>> listScore = new MutableLiveData<List<Score>>();
     public MutableLiveData<List<WordReviews>> listWordReviews = new MutableLiveData<>();
+    public MutableLiveData<List<HistoryTranslate>> listHistoryTranslate = new MutableLiveData<>();
     public WordViewModel() {
         wordReponsitory = WordRepository.getInstance();
         wordReponsitory.setCallback(this);
@@ -66,6 +68,12 @@ public class WordViewModel extends ViewModel implements ResultCallback {
     }
     public void showScore(int idUser,int kingofreview){
         wordReponsitory. showScore(idUser, kingofreview);
+    }
+    public void createHistoryTranslate(int idUser, String text, String mean){
+        wordReponsitory.createHistoryTranslate(idUser, text, mean);
+    }
+    public void showHistoryTranslate(int idUser){
+        wordReponsitory.showHistoryTranslate(idUser);
     }
     @Override
     public void onGetWordsResult(List<Word> data) {
@@ -144,5 +152,17 @@ public class WordViewModel extends ViewModel implements ResultCallback {
         if (bool){
             showScore(idUser,kingofreview);
         }
+    }
+
+    @Override
+    public void onResultCreateHistoryTranslate(boolean bool, int idUser) {
+        if (bool){
+            showHistoryTranslate(idUser);
+        }
+    }
+
+    @Override
+    public void onShowHistoryTranslate(List<HistoryTranslate> historyTranslates) {
+        listHistoryTranslate.postValue(historyTranslates);
     }
 }

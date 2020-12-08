@@ -76,6 +76,7 @@ public class ListAdapterWord extends RecyclerView.Adapter<ListAdapterWord.ViewHo
 
         if (listData.get(position).getStar() == 1){
             holder.checkMark.setChecked(true);
+            listPositionDelete.add(position);
         }else{
             holder.checkMark.setChecked(false);
         }

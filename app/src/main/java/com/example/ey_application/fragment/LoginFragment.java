@@ -87,11 +87,10 @@ public class LoginFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
        getView(view);
-
+       checkDataEditText();
        buttonLogin.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               Log.i("hihi", "Login éo được hả con");
                if (checkData()){
                    getTextView();
                    userLogin.userInfo(name, email, password);

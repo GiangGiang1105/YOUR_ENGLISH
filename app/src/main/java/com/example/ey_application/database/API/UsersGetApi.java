@@ -25,5 +25,7 @@ public interface UsersGetApi  {
     Call<MessageFromServer> createUser( @Field("email") String email, @Field("phone") String phone, @Field("password") String pass, @Field("userName") String username);
     @GET("userlogin.php")
     Call<MessageFromServer> getUserLogin(@Query("userName") String username, @Query("email")String email, @Query("password") String password);
-
+    @FormUrlEncoded
+    @POST("updateuser.php")
+    Call<MessageFromServer> updateUser(@Field("email") String email, @Field("phone") String phone, @Field("password") String pass, @Field("username") String username, @Field("id") int idUser);
 }

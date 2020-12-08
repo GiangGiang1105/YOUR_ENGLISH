@@ -96,4 +96,19 @@
     <string name="name_btn_translate2">Vietnamese-English</string>
     <string name="hint_input_translate">Enter the text to be translated</string>
     <string name="btn_result">Result</string>
+    <string name="pref_name">Username</string>
+    <string name="pref_email">Email</string>
+    <string name="pref_phone">Phone</string>
+    <string name="pref_password">Password</string>
+    <string name="title_toolbar_account_setting">Account Setting</string>
+   <string name="btn_save">Save</string>
+    <string name="password_old">Old password </string>
+    <string name="password_new">New password </string>
+    <string name="password_confirm">Confirm password</string>
+    <string name="change_password">Change Password</string>
+    <string name="btn_change">Change</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name = "message_check_passwordold"> Wrong old password </string>
+    <string name = "message_checkpasswordnewlengh"> Must be more than 8 characters in length, including upper and lower case characters, number </string>
+    <string name = "message_check_passwordconfirm"> Confirm password does not match new password </string>
 </resources>

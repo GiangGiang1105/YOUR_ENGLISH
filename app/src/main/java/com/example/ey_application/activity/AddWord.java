@@ -208,9 +208,11 @@ public class AddWord extends AppCompatActivity  implements  ResultCallBackWord {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 List<Integer> listId = new ArrayList<>();
-                for (int i : listAdapterWord.listPosition){
+                for (int i : listAdapterWord.listPositionDelete){
                     listId.add(listWord.get(i).getId());
+                    Log.i("ListId", String.valueOf(listWord.get(i).getId()));
                 }
+
                 wordViewModel.deleteAllWord(id_user, listId);
             }
         });
@@ -251,6 +253,7 @@ public class AddWord extends AppCompatActivity  implements  ResultCallBackWord {
     public void onInsertReviewsResult(boolean bool) {
         if (bool){
             Toast.makeText(getApplicationContext(), getString(R.string.message_add_review), Toast.LENGTH_LONG).show();
+
         }
         else{
             Toast.makeText(getApplicationContext(), getString(R.string.server_error), Toast.LENGTH_LONG).show();

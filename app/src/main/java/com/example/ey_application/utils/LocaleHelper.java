@@ -25,7 +25,7 @@ public class LocaleHelper {
         String langPref = "Language";
         SharedPreferences prefs = activity.getSharedPreferences("CommonPrefs",
                 Activity.MODE_PRIVATE);
-        String language = prefs.getString(langPref, "");
+        String language = prefs.getString(langPref, "en");
         Log.e("DEBUGLocal", language);
         changeLang(language, activity);
     }

@@ -29,12 +29,19 @@ import retrofit2.Retrofit;
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK;
 
 public class UserRepository {
+   public interface resultUser{
+        void resultUpdateUser(boolean bool);
+    }
     private static UserRepository userRepository;
+    private  resultUser resultUser;
     public static UserRepository getInstance(){
         if (userRepository == null){
             userRepository = new UserRepository();
         }
         return userRepository;
+    }
+    public void createResult(resultUser resultUser){
+        this.resultUser = resultUser;
     }
     private UsersGetApi userApi;
 
@@ -116,5 +123,23 @@ public class UserRepository {
             }
         });
 
+    }
+    public void updateUser(String email, String phone, String pass, String username, int idUser){
+            userApi.updateUser(email, phone, pass, username, idUser).enqueue(new Callback<MessageFromServer>() {
+                @Override
+                public void onResponse(Call<MessageFromServer> call, Response<MessageFromServer> response) {
+                    if (response.isSuccessful()){
+                        resultUser.resultUpdateUser(true);
+                    }
+                    else{
+                        resultUser.resultUpdateUser(false);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<MessageFromServer> call, Throwable t) {
+                    resultUser.resultUpdateUser(false);
+                }
+            });
     }
 }

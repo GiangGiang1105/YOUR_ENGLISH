@@ -13,10 +13,6 @@
         android:icon="@drawable/view_list_outline"
         android:title="@string/menu_dictionary" />
     <item
-        android:id="@+id/nav_word"
-        android:icon="@drawable/view_list_outline"
-        android:title="@string/menu_word_looked_up" />
-    <item
         android:id="@+id/nav_account_setting"
         android:icon="@drawable/account_cog_outline"
         android:title="@string/menu_account_setting" />

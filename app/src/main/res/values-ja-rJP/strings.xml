@@ -96,4 +96,19 @@
     <string name = "name_btn_translate2">ベトナム語-英語</string>
     <string name = "hint_input_translate">翻訳するテキストを入力してください</string>
     <string name = "btn_result">結果</string>
+    <string name = "pref_name">ユーザー名</string>
+    <string name = "pref_email">メール</string>
+    <string name = "pref_phone">電話</string>
+    <string name = "pref_password">パスワード</string>
+    <string name = "title_toolbar_account_setting">アカウント設定</string>
+    <string name = "btn_save">保存</string>
+    <string name = "password_old">古いパスワード</string>
+    <string name = "password_new">新しいパスワード</string>
+    <string name = "password_confirm">パスワードの確認</string>
+    <string name = "change_password">パスワードの変更</string>
+    <string name = "btn_change">変更</string>
+    <string name = "btn_cancel">キャンセル</string>
+    <string name = "message_check_passwordold">古いパスワードが間違っています</string>
+    <string name = "message_checkpasswordnewlengh">大文字と小文字、数字を含め、長さが8文字を超える必要があります</string>
+    <string name = "message_check_passwordconfirm">パスワードが新しいパスワードと一致しないことを確認する</string>
 </resources>

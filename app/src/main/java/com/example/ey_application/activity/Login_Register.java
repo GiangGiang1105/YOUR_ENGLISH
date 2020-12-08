@@ -21,6 +21,7 @@ import com.example.ey_application.ViewModel.UsersViewModel;
 import com.example.ey_application.fragment.LoginFragment;
 import com.example.ey_application.fragment.RegisterFragment;
 import com.example.ey_application.session.SessionUser;
+import com.example.ey_application.utils.LocaleHelper;
 
 import java.util.Base64;
 import java.util.List;
@@ -28,18 +29,18 @@ import java.util.List;
 import static com.example.ey_application.R.id.fragment;
 
 public class Login_Register extends AppCompatActivity implements RegisterFragment.Register, LoginFragment.UserLogin  {
-
-
     private Button mButton;
     private FragmentTransaction ft_add;
-    private String titleButtonLogin = getString(R.string.title_button_login);
-    private String titleButtonRegister = getString(R.string.title_button_register);
+    private String titleButtonLogin = "login" ;
+    private String titleButtonRegister = "register";
     private UsersViewModel usersViewModel;
     private List<Users> usersList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_register);
+        titleButtonLogin = getString(R.string.title_button_login);
+        LocaleHelper.loadLocale(this);
         getView();
         setFragment();
         mButton.setOnClickListener(new View.OnClickListener() {
@@ -74,13 +75,13 @@ public class Login_Register extends AppCompatActivity implements RegisterFragmen
             ft_add.addToBackStack(null);
             ft_add.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
             ft_add.commit();
-            mButton.setText(titleButtonRegister);
+            mButton.setText(R.string.title_button_register);
         }
         else{
             ft_add.replace(fragment, new LoginFragment(), RegisterFragment.class.getName());
             ft_add.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
             ft_add.commit();
-            mButton.setText(titleButtonLogin);
+            mButton.setText(R.string.title_button_login);
         }
     }
     @Override
@@ -145,6 +146,5 @@ public class Login_Register extends AppCompatActivity implements RegisterFragmen
                 = Base64.getEncoder()
                 .encodeToString(password.getBytes());
         usersViewModel.getUserLogin(name,email, encode_password, getApplication());
-
     }
 }

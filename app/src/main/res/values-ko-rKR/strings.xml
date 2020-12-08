@@ -96,4 +96,19 @@
     <string name = "name_btn_translate2"> 베트남어-영어 </string>
     <string name = "hint_input_translate"> 번역 할 텍스트 입력 </string>
     <string name = "btn_result"> 결과 </string>
+    <string name = "pref_name"> 사용자 이름 </string>
+    <string name = "pref_email"> 이메일 </string>
+    <string name = "pref_phone"> 전화 </string>
+    <string name = "pref_password"> 비밀번호 </string>
+    <string name = "title_toolbar_account_setting"> 계정 설정 </string>
+    <string name = "btn_save"> 저장 </string>
+    <string name = "password_old"> 이전 비밀번호 </string>
+    <string name = "password_new"> 새 비밀번호 </string>
+    <string name = "password_confirm"> 비밀번호 확인 </string>
+    <string name = "change_password"> 비밀번호 변경 </string>
+    <string name = "btn_change"> 변경 </string>
+    <string name = "btn_cancel"> 취소 </string>
+    <string name = "message_check_passwordold"> 잘못된 이전 비밀번호 </string>
+    <string name = "message_checkpasswordnewlengh"> 대문자 및 소문자, 숫자를 포함하여 8 자 이상이어야합니다. </string>
+    <string name = "message_check_passwordconfirm"> 비밀번호 확인이 새 비밀번호와 일치하지 않음 </string>
 </resources>

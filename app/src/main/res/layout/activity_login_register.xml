@@ -30,6 +30,7 @@
             android:fontFamily="@font/segoeprint"
             android:textAllCaps="false"
             android:text="@string/btn_change_page"
+            android:tag="login"
             android:textColor="#A9B7FA" />
     </LinearLayout>
 

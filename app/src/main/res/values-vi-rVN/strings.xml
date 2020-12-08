@@ -96,4 +96,19 @@
     <string name = "name_btn_translate2"> Việt-Anh </string>
     <string name = "hint_input_translate"> Nhập văn bản cần dịch </string>
     <string name = "btn_result"> Kết quả </string>
+    <string name = "pref_name"> Tên người dùng </string>
+    <string name = "pref_email"> Email </string>
+    <string name = "pref_phone"> Điện thoại </string>
+    <string name = "pref_password"> Mật khẩu </string>
+    <string name = "title_toolbar_account_setting"> Cài đặt tài khoản </string>
+    <string name = "btn_save"> Lưu </string>
+    <string name = "password_old"> Mật khẩu cũ </string>
+    <string name = "password_new"> Mật khẩu mới </string>
+    <string name = "password_confirm"> Xác nhận mật khẩu </string>
+    <string name = "change_password"> Thay đổi mật khẩu </string>
+    <string name = "btn_change"> Thay đổi </string>
+    <string name = "btn_cancel"> Huỷ </string>
+    <string name="message_check_passwordold">Mật khẩu cũ sai</string>
+    <string name="message_checkpasswordnewlengh">Độ dài phải hơn 8 kí tự, gồm ký tự hoa và thường, số</string>
+    <string name="message_check_passwordconfirm">Xác nhận mật khẩu không khớp với mật khẩu mới</string>
 </resources>
